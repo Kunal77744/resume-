@@ -44,6 +44,78 @@
         ]
       }
     </script>
+    <script>
+      !(function (document, posthog) {
+        if (posthog.__SV) return;
+
+        window.posthog = posthog;
+        posthog._i = [];
+        posthog.init = function (apiKey, config, name) {
+          function stub(target, method) {
+            target[method] = function () {
+              target.push(
+                [method].concat(Array.prototype.slice.call(arguments, 0)),
+              );
+            };
+          }
+
+          const script = document.createElement("script");
+          script.type = "text/javascript";
+          script.crossOrigin = "anonymous";
+          script.async = true;
+          script.src =
+            config.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") +
+            "/static/array.js";
+
+          const firstScript = document.getElementsByTagName("script")[0];
+          firstScript.parentNode.insertBefore(script, firstScript);
+
+          let instance = posthog;
+          if (name !== undefined) {
+            instance = posthog[name] = [];
+          } else {
+            name = "posthog";
+          }
+
+          instance.people = instance.people || [];
+          instance.toString = function (includePeople) {
+            let label = "posthog";
+            if (name !== "posthog") label += "." + name;
+            if (!includePeople) label += " (stub)";
+            return label;
+          };
+          instance.people.toString = function () {
+            return instance.toString(1) + ".people (stub)";
+          };
+
+          const methods = [
+            "capture",
+            "identify",
+            "alias",
+            "register",
+            "register_once",
+            "unregister",
+            "reset",
+          ];
+
+          methods.forEach(function (method) {
+            stub(instance, method);
+          });
+
+          posthog._i.push([apiKey, config, name]);
+        };
+        posthog.__SV = 1;
+      })(document, window.posthog || []);
+
+      window.posthog.init("phc_Ar99UYERT9QEw5CzW9LT9dWdL9mJppdsj7yM3DpEzFdC", {
+        api_host: "https://us.i.posthog.com",
+        autocapture: false,
+        capture_pageview: true,
+        capture_pageleave: false,
+        disable_session_recording: true,
+        person_profiles: "identified_only",
+      });
+    </script>
     <script src="/script.js" defer></script>
   </head>
   <body>
