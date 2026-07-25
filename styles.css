@@ -183,6 +183,7 @@ h1 span {
 .secondary-action:focus-visible,
 .quiet-link:focus-visible,
 .identity:focus-visible,
+.source-link:focus-visible,
 .tin-credit:focus-visible {
   outline: 3px solid #417612;
   outline-offset: 4px;
@@ -843,7 +844,6 @@ h1 span {
 .common-place small {
   color: var(--muted);
 }
-}
 
 .about blockquote {
   grid-column: 1 / -1;
@@ -932,6 +932,22 @@ h1 span {
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 12px;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.source-link {
+  color: inherit;
+  text-underline-offset: 4px;
+  transition: color 160ms ease-out;
+}
+
+.source-link:hover {
+  color: var(--ink);
 }
 
 .tin-credit {
@@ -1192,6 +1208,12 @@ h1 span {
 
   .site-footer p {
     margin: 0;
+  }
+
+  .footer-links {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
   }
 }
 
