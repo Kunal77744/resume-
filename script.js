@@ -14,7 +14,14 @@ document.addEventListener("click", (event) => {
     return;
   }
 
+  const contactLocation = contactLink.dataset.contactLocation;
+
+  if (contactLocation !== "hero" && contactLocation !== "footer") {
+    return;
+  }
+
   window.posthog.capture("contact_clicked", {
     contact_method: "email",
+    contact_location: contactLocation,
   });
 });
