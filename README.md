@@ -24,7 +24,9 @@ visible focus styles, responsive layouts, and reduced-motion support.
 
 PostHog records page views and contact-link clicks. Autocapture and session
 recording are disabled, and the contact event contains only the email contact
-method and the link location (`hero` or `footer`).
+method, the link location (`hero` or `footer`), and an optional allowlisted,
+non-personal evaluator route. Tagged evaluator visits also carry the same route
+label into the pre-addressed email draft; arbitrary query values are ignored.
 
 ## View locally
 
