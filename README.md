@@ -1,20 +1,18 @@
 # Kunal Deshmukh portfolio
 
-A single-page web design and development portfolio for Kunal Deshmukh. The live
-site is available at
+A single-page MERN and full-stack development portfolio for Kunal Deshmukh. The
+live site is available at
 [resume-sable-phi.vercel.app](https://resume-sable-phi.vercel.app/).
 
-## Interface studies
+## Selected projects
 
-The portfolio presents three self-initiated concept studies. They are interface
-explorations, not client work:
+The portfolio presents three public projects from Kunal's existing portfolio:
 
-- **Signal Desk** explores prioritisation and calm information density in a
-  productivity dashboard.
-- **Field Notes** explores editorial pacing and long-form browsing in a research
-  library.
-- **Common Ground** explores mobile-first storytelling and progressive detail
-  for a community event.
+- **EcoTrace** is a MERN carbon emission tracker with authentication, CRUD
+  flows, dashboards, and data visualization.
+- **Bookify** is a MERN bookstore with inventory, user, order, search, filter,
+  and cart flows.
+- **AI Study Buddy** is a Streamlit and Gemini-powered study companion.
 
 ## Implementation
 
