@@ -22,15 +22,18 @@ state, progress, timing, and live feedback update.
 
 The site uses plain HTML, CSS, and JavaScript with no build step or application
 framework. The interface includes semantic page landmarks, a keyboard skip link,
-visible focus styles, responsive layouts, and reduced-motion support.
+visible focus styles, responsive layouts, and reduced-motion support. The
+homepage also links to a one-page downloadable resume built from the same
+verified project, education, skill, and credential details.
 
-PostHog records page views, contact-link clicks, and Signal Desk priority
-changes. Autocapture and session recording are disabled. Contact events contain
-only the email method, link location (`hero` or `footer`), and an optional
-allowlisted, non-personal evaluator route. Signal Desk events contain only the
-selected priority, input method, and the same optional route. Tagged evaluator
-visits also carry that route into the pre-addressed email draft; arbitrary
-query values are ignored.
+PostHog records page views, contact-link clicks, Signal Desk priority changes,
+and resume-download clicks. Autocapture and session recording are disabled.
+Contact events contain only the email method, link location (`hero` or
+`footer`), and an optional allowlisted, non-personal evaluator route. Resume
+events contain only the link location and the same optional route. Signal Desk
+events contain only the selected priority, input method, and the same optional
+route. Tagged evaluator visits also carry that route into the pre-addressed
+email draft; arbitrary query values are ignored.
 
 ## View locally
 

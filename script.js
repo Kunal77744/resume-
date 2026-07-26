@@ -92,6 +92,23 @@ if (signalDesk) {
 }
 
 document.addEventListener("click", (event) => {
+  const resumeLink =
+    event.target instanceof Element
+      ? event.target.closest("[data-resume-download]")
+      : null;
+
+  if (resumeLink && typeof window.posthog?.capture === "function") {
+    const resumeProperties = {
+      download_location: "hero",
+    };
+
+    if (evaluatorSource) {
+      resumeProperties.evaluator_source = evaluatorSource;
+    }
+
+    window.posthog.capture("resume_download_clicked", resumeProperties);
+  }
+
   const contactLink =
     event.target instanceof Element
       ? event.target.closest('a[href^="mailto:"]')
