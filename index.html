@@ -175,7 +175,11 @@
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
-      <a class="wordmark" href="#top" aria-label="Kunal Deshmukh, home">
+      <a
+        class="wordmark"
+        href="#top"
+        aria-label="kunal.dev, Kunal Deshmukh home"
+      >
         kunal<span>.dev</span>
       </a>
       <nav aria-label="Primary navigation">
@@ -214,7 +218,7 @@
               id="contact-hero"
               class="primary-action"
               data-contact-location="hero"
-              aria-label="Email Kunal Deshmukh about a full-time role or interview opportunity"
+              aria-label="Discuss a role with Kunal Deshmukh by email"
               href="mailto:resume-sable-phi@mail.tin.computer?subject=Kunal%20Deshmukh%20portfolio%20inquiry"
             >
               Discuss a role
@@ -442,6 +446,127 @@
         </div>
       </section>
 
+      <section
+        class="section signal-lab"
+        id="interaction"
+        aria-labelledby="interaction-title"
+      >
+        <header class="section-heading">
+          <p class="section-index">01A / Interaction lab</p>
+          <div>
+            <h2 id="interaction-title">A small workflow you can actually use.</h2>
+            <p>
+              Signal Desk is a self-initiated interface study built into this
+              portfolio. Choose a priority to see the state, progress, and live
+              feedback update.
+            </p>
+          </div>
+        </header>
+
+        <div
+          class="signal-desk"
+          data-signal-desk
+          role="group"
+          aria-labelledby="signal-demo-title"
+          aria-describedby="signal-demo-instructions"
+        >
+          <div class="signal-rail" aria-hidden="true">
+            <span class="signal-logo">S</span>
+            <span class="signal-rail-item signal-rail-item--active"></span>
+            <span class="signal-rail-item"></span>
+            <span class="signal-rail-item"></span>
+            <span class="signal-avatar"></span>
+          </div>
+
+          <div class="signal-workspace">
+            <div class="signal-topline">
+              <div>
+                <span class="signal-kicker" id="signal-demo-title">
+                  Interactive demo / Today
+                </span>
+                <strong>Good morning.</strong>
+              </div>
+              <span class="signal-date" aria-hidden="true">25 Jul</span>
+            </div>
+
+            <div class="signal-grid">
+              <div class="signal-focus" aria-live="polite" aria-atomic="true">
+                <span class="signal-kicker">In focus</span>
+                <strong data-signal-focus-title>Review direction</strong>
+                <div
+                  class="signal-progress"
+                  role="progressbar"
+                  aria-label="Planned focus progress"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="62"
+                >
+                  <span data-signal-progress></span>
+                </div>
+                <small data-signal-focus-time>42 min planned</small>
+                <p class="signal-feedback" data-signal-feedback>
+                  Review direction is now the priority.
+                </p>
+              </div>
+
+              <div class="signal-metric" aria-hidden="true">
+                <span class="signal-kicker">Momentum</span>
+                <strong>08</strong>
+                <small>calm days</small>
+              </div>
+
+              <div class="signal-agenda">
+                <div class="signal-agenda-heading">
+                  <span class="signal-kicker">Set the priority</span>
+                  <span class="signal-key-hint" id="signal-demo-instructions">
+                    Tab, then Enter
+                  </span>
+                </div>
+                <button
+                  class="signal-task is-active"
+                  type="button"
+                  aria-pressed="true"
+                  data-signal-priority="review"
+                  data-signal-title="Review direction"
+                  data-signal-time="42 min planned"
+                  data-signal-progress-value="62"
+                >
+                  <time datetime="10:30">10:30</time>
+                  <span>Review direction</span>
+                  <small data-signal-task-status>In focus</small>
+                </button>
+                <button
+                  class="signal-task"
+                  type="button"
+                  aria-pressed="false"
+                  data-signal-priority="prototype"
+                  data-signal-title="Prototype pass"
+                  data-signal-time="68 min planned"
+                  data-signal-progress-value="38"
+                >
+                  <time datetime="13:00">13:00</time>
+                  <span>Prototype pass</span>
+                  <small data-signal-task-status>Set priority</small>
+                </button>
+                <button
+                  class="signal-task"
+                  type="button"
+                  aria-pressed="false"
+                  data-signal-priority="admin"
+                  data-signal-title="Quiet admin"
+                  data-signal-time="24 min planned"
+                  data-signal-progress-value="84"
+                >
+                  <time datetime="16:15">16:15</time>
+                  <span>Quiet admin</span>
+                  <small data-signal-task-status>Set priority</small>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section skills" id="skills" aria-labelledby="skills-title">
         <header class="section-heading compact-heading">
           <p class="section-index">02 / Toolkit</p>
@@ -604,7 +729,7 @@
             id="contact-footer"
             class="secondary-action"
             data-contact-location="footer"
-            aria-label="Email Kunal Deshmukh about a full-time role or interview opportunity"
+            aria-label="Start a conversation with Kunal Deshmukh by email"
             href="mailto:resume-sable-phi@mail.tin.computer?subject=Kunal%20Deshmukh%20portfolio%20inquiry"
           >
             Start a conversation <span aria-hidden="true">↗</span>

@@ -14,17 +14,23 @@ The portfolio presents three public projects from Kunal's existing portfolio:
   and cart flows.
 - **AI Study Buddy** is a Streamlit and Gemini-powered study companion.
 
+It also includes **Signal Desk**, a self-initiated interactive interface study.
+Visitors can choose a priority by pointer or keyboard and see the selected
+state, progress, timing, and live feedback update.
+
 ## Implementation
 
 The site uses plain HTML, CSS, and JavaScript with no build step or application
 framework. The interface includes semantic page landmarks, a keyboard skip link,
 visible focus styles, responsive layouts, and reduced-motion support.
 
-PostHog records page views and contact-link clicks. Autocapture and session
-recording are disabled, and the contact event contains only the email contact
-method, the link location (`hero` or `footer`), and an optional allowlisted,
-non-personal evaluator route. Tagged evaluator visits also carry the same route
-label into the pre-addressed email draft; arbitrary query values are ignored.
+PostHog records page views, contact-link clicks, and Signal Desk priority
+changes. Autocapture and session recording are disabled. Contact events contain
+only the email method, link location (`hero` or `footer`), and an optional
+allowlisted, non-personal evaluator route. Signal Desk events contain only the
+selected priority, input method, and the same optional route. Tagged evaluator
+visits also carry that route into the pre-addressed email draft; arbitrary
+query values are ignored.
 
 ## View locally
 
