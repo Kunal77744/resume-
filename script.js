@@ -4,6 +4,209 @@ if (year) {
   year.textContent = String(new Date().getFullYear());
 }
 
+const reducedMotionQuery = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+);
+const finePointerQuery = window.matchMedia("(pointer: fine)");
+const motionRoot = document.documentElement;
+const scrollProgress = document.querySelector("[data-scroll-progress]");
+const ambientSpotlight = document.querySelector("[data-ambient-spotlight]");
+
+const markMotionTargets = () => {
+  const loadTargets = [
+    [".site-header", "header", 0],
+    [".hero .status-line, .case-hero .status-line", "content", 20],
+    [".hero h1, .case-hero h1", "content", 55],
+    [".hero-intro, .case-hero-intro", "content", 85],
+    [".hero-actions, .case-hero-actions", "content", 115],
+    [".profile-panel, .case-hero-visual", "content", 70],
+  ];
+
+  loadTargets.forEach(([selector, kind, delay]) => {
+    document.querySelectorAll(selector).forEach((element) => {
+      element.dataset.load = kind;
+      element.style.setProperty("--motion-delay", `${delay}ms`);
+    });
+  });
+
+  const revealGroups = [
+    ".proof-strip > div",
+    ".section-heading > *",
+    ".project > .project-art",
+    ".project > .project-copy",
+    ".signal-desk",
+    ".skill-groups > article",
+    ".timeline > li",
+    ".credential-grid > article",
+    ".contact > div",
+    ".case-section > *",
+    ".source-proof",
+  ];
+
+  revealGroups.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((element, index) => {
+      element.dataset.reveal = "";
+      element.style.setProperty(
+        "--motion-delay",
+        `${Math.min(index % 3, 2) * 45}ms`,
+      );
+    });
+  });
+};
+
+const initMotion = () => {
+  markMotionTargets();
+  motionRoot.classList.add("motion-ready");
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      motionRoot.classList.add("motion-entered");
+    });
+  });
+
+  const revealTargets = Array.from(document.querySelectorAll("[data-reveal]"));
+
+  if (!("IntersectionObserver" in window)) {
+    revealTargets.forEach((element) => element.classList.add("is-visible"));
+    return;
+  }
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      rootMargin: "0px 0px -8% 0px",
+      threshold: 0.08,
+    },
+  );
+
+  revealTargets.forEach((element) => revealObserver.observe(element));
+};
+
+if (!reducedMotionQuery.matches) {
+  initMotion();
+}
+
+const updateScrollProgress = () => {
+  if (!scrollProgress) {
+    return;
+  }
+
+  const scrollableHeight =
+    document.documentElement.scrollHeight - window.innerHeight;
+  const progress =
+    scrollableHeight > 0
+      ? Math.min(Math.max(window.scrollY / scrollableHeight, 0), 1)
+      : 0;
+
+  scrollProgress.style.transform = `scaleX(${progress})`;
+};
+
+let scrollFrame;
+window.addEventListener(
+  "scroll",
+  () => {
+    if (scrollFrame) {
+      return;
+    }
+
+    scrollFrame = window.requestAnimationFrame(() => {
+      updateScrollProgress();
+      scrollFrame = null;
+    });
+  },
+  { passive: true },
+);
+updateScrollProgress();
+
+if (
+  ambientSpotlight &&
+  finePointerQuery.matches &&
+  !reducedMotionQuery.matches
+) {
+  const spotlightSize = 420;
+  let spotlightFrame;
+  let pointerX = -spotlightSize;
+  let pointerY = -spotlightSize;
+
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      pointerX = event.clientX - spotlightSize / 2;
+      pointerY = event.clientY - spotlightSize / 2;
+      motionRoot.classList.add("has-pointer");
+
+      if (spotlightFrame) {
+        return;
+      }
+
+      spotlightFrame = window.requestAnimationFrame(() => {
+        ambientSpotlight.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
+        spotlightFrame = null;
+      });
+    },
+    { passive: true },
+  );
+
+  document.documentElement.addEventListener("mouseleave", () => {
+    motionRoot.classList.remove("has-pointer");
+  });
+}
+
+const navigationLinks = Array.from(
+  document.querySelectorAll('.site-header nav a[href^="#"]'),
+);
+
+if ("IntersectionObserver" in window && navigationLinks.length) {
+  const sectionLinks = new Map(
+    navigationLinks
+      .map((link) => {
+        const target = document.querySelector(link.getAttribute("href"));
+        return target ? [target, link] : null;
+      })
+      .filter(Boolean),
+  );
+
+  const navigationObserver = new IntersectionObserver(
+    (entries) => {
+      const visibleEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visibleEntry) {
+        return;
+      }
+
+      navigationLinks.forEach((link) => {
+        const isCurrent = link === sectionLinks.get(visibleEntry.target);
+        link.classList.toggle("is-current", isCurrent);
+
+        if (isCurrent) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    },
+    {
+      rootMargin: "-22% 0px -62% 0px",
+      threshold: [0, 0.1, 0.25],
+    },
+  );
+
+  sectionLinks.forEach((link, section) => {
+    navigationObserver.observe(section);
+  });
+}
+
 const evaluatorSource =
   window.PortfolioAttribution?.getAllowedSource(window.location.search) ?? null;
 
