@@ -26,14 +26,16 @@ visible focus styles, responsive layouts, and reduced-motion support. The
 homepage also links to a one-page downloadable resume built from the same
 verified project, education, skill, and credential details.
 
-PostHog records page views, contact-link clicks, Signal Desk priority changes,
-and resume-download clicks. Autocapture and session recording are disabled.
+PostHog records page views, contact-link clicks, contact-address copies, Signal
+Desk priority changes, and resume-download clicks. Autocapture and session
+recording are disabled.
 Contact events contain only the email method, link location (`hero` or
 `footer`), and an optional allowlisted, non-personal evaluator route. Resume
 events contain only the link location and the same optional route. Signal Desk
 events contain only the selected priority, input method, and the same optional
-route. Tagged evaluator visits also carry that route into the pre-addressed
-email draft; arbitrary query values are ignored.
+route. Copy events contain only the contact location. Tagged evaluator visits
+also carry that route into the pre-addressed email draft; arbitrary query values
+are ignored.
 
 ## View locally
 

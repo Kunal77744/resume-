@@ -91,6 +91,104 @@ if (signalDesk) {
   });
 }
 
+const copyEmailButton = document.querySelector("[data-copy-email]");
+const contactEmail = document.querySelector("[data-contact-email]");
+const copyEmailLabel = copyEmailButton?.querySelector("[data-copy-label]");
+const copyEmailStatus = document.querySelector("#contact-copy-status");
+let copyStatusResetTimer;
+
+const selectContactEmail = () => {
+  if (!contactEmail) {
+    return;
+  }
+
+  const selection = window.getSelection();
+  const range = document.createRange();
+
+  range.selectNodeContents(contactEmail);
+  selection?.removeAllRanges();
+  selection?.addRange(range);
+  contactEmail.focus();
+};
+
+const copyWithLegacyFallback = (text) => {
+  const copyField = document.createElement("textarea");
+
+  copyField.value = text;
+  copyField.setAttribute("readonly", "");
+  copyField.style.position = "fixed";
+  copyField.style.opacity = "0";
+  document.body.append(copyField);
+  copyField.select();
+
+  let copied = false;
+
+  try {
+    copied = document.execCommand("copy");
+  } catch {
+    copied = false;
+  }
+
+  copyField.remove();
+  return copied;
+};
+
+if (
+  copyEmailButton &&
+  contactEmail &&
+  copyEmailLabel &&
+  copyEmailStatus
+) {
+  copyEmailButton.addEventListener("click", async () => {
+    const emailAddress = contactEmail.textContent?.trim();
+
+    if (!emailAddress) {
+      return;
+    }
+
+    let copied = false;
+
+    try {
+      if (typeof navigator.clipboard?.writeText !== "function") {
+        throw new Error("Clipboard API unavailable");
+      }
+
+      await navigator.clipboard.writeText(emailAddress);
+      copied = true;
+    } catch {
+      copied = copyWithLegacyFallback(emailAddress);
+    }
+
+    window.clearTimeout(copyStatusResetTimer);
+
+    if (!copied) {
+      selectContactEmail();
+      copyEmailLabel.textContent = "Selected";
+      copyEmailButton.dataset.copyState = "selected";
+      copyEmailStatus.textContent =
+        "Copy unavailable. The email address is selected for manual copying.";
+      return;
+    }
+
+    copyEmailLabel.textContent = "Copied";
+    copyEmailButton.dataset.copyState = "copied";
+    copyEmailStatus.textContent = "Email address copied to clipboard.";
+
+    if (typeof window.posthog?.capture === "function") {
+      window.posthog.capture("contact_copied", {
+        contact_location: copyEmailButton.dataset.copyLocation,
+      });
+    }
+
+    copyStatusResetTimer = window.setTimeout(() => {
+      copyEmailLabel.textContent = "Copy email";
+      delete copyEmailButton.dataset.copyState;
+      copyEmailStatus.textContent =
+        "Select the address manually if copying is unavailable.";
+    }, 3000);
+  });
+}
+
 document.addEventListener("click", (event) => {
   const resumeLink =
     event.target instanceof Element
