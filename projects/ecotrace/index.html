@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A source-backed case study of EcoTrace, Kunal Deshmukh's TypeScript MERN carbon-footprint tracker with authentication, natural-language analysis, history, challenges, and tests."
+    />
+    <meta name="theme-color" content="#090b0a" />
+    <link
+      rel="canonical"
+      href="https://resume-sable-phi.vercel.app/projects/ecotrace/"
+    />
+    <meta
+      property="og:title"
+      content="EcoTrace case study | Kunal Deshmukh"
+    />
+    <meta
+      property="og:description"
+      content="Follow one activity log through EcoTrace's React interface, protected Express API, Gemini parser, MongoDB record, and dashboard."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://resume-sable-phi.vercel.app/projects/ecotrace/"
+    />
+    <meta property="og:site_name" content="Kunal Deshmukh" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      property="og:image"
+      content="https://resume-sable-phi.vercel.app/social-preview.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="Kunal Deshmukh, MERN and full-stack developer"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="EcoTrace case study | Kunal Deshmukh"
+    />
+    <meta
+      name="twitter:description"
+      content="A source-backed look at EcoTrace's interface, API, AI parsing, persistence, and tests."
+    />
+    <meta
+      name="twitter:image"
+      content="https://resume-sable-phi.vercel.app/social-preview.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Kunal Deshmukh, MERN and full-stack developer"
+    />
+    <title>EcoTrace case study | Kunal Deshmukh</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://resume-sable-phi.vercel.app/projects/ecotrace/#page",
+            "url": "https://resume-sable-phi.vercel.app/projects/ecotrace/",
+            "name": "EcoTrace case study | Kunal Deshmukh",
+            "description": "A source-backed case study of EcoTrace, a TypeScript MERN carbon-footprint tracker.",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@type": "WebSite",
+              "@id": "https://resume-sable-phi.vercel.app/#website"
+            },
+            "about": {
+              "@type": "SoftwareSourceCode",
+              "name": "EcoTrace",
+              "codeRepository": "https://github.com/mern2026book-cmd/CarbonEmission",
+              "programmingLanguage": ["TypeScript", "JavaScript"]
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Portfolio",
+                "item": "https://resume-sable-phi.vercel.app/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "EcoTrace case study",
+                "item": "https://resume-sable-phi.vercel.app/projects/ecotrace/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <script>
+      !(function (document, posthog) {
+        if (posthog.__SV) return;
+        window.posthog = posthog;
+        posthog._i = [];
+        posthog.init = function (apiKey, config, name) {
+          function stub(target, method) {
+            target[method] = function () {
+              target.push(
+                [method].concat(Array.prototype.slice.call(arguments, 0)),
+              );
+            };
+          }
+          const script = document.createElement("script");
+          script.type = "text/javascript";
+          script.crossOrigin = "anonymous";
+          script.async = true;
+          script.src =
+            config.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") +
+            "/static/array.js";
+          const firstScript = document.getElementsByTagName("script")[0];
+          firstScript.parentNode.insertBefore(script, firstScript);
+          let instance = posthog;
+          if (name !== undefined) {
+            instance = posthog[name] = [];
+          } else {
+            name = "posthog";
+          }
+          instance.people = instance.people || [];
+          instance.toString = function (includePeople) {
+            let label = "posthog";
+            if (name !== "posthog") label += "." + name;
+            if (!includePeople) label += " (stub)";
+            return label;
+          };
+          instance.people.toString = function () {
+            return instance.toString(1) + ".people (stub)";
+          };
+          ["capture", "identify", "register", "register_once", "unregister"].forEach(
+            function (method) {
+              stub(instance, method);
+            },
+          );
+          posthog._i.push([apiKey, config, name]);
+        };
+        posthog.__SV = 1;
+      })(document, window.posthog || []);
+
+      window.posthog.init("phc_Ar99UYERT9QEw5CzW9LT9dWdL9mJppdsj7yM3DpEzFdC", {
+        api_host: "https://us.i.posthog.com",
+        autocapture: false,
+        capture_pageview: true,
+        capture_pageleave: false,
+        disable_session_recording: true,
+        person_profiles: "identified_only",
+      });
+    </script>
+    <script src="/source-attribution.js" defer></script>
+    <script src="/script.js" defer></script>
+  </head>
+  <body id="top" class="case-study-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <a
+        class="wordmark"
+        href="/"
+        aria-label="kunal.dev, Kunal Deshmukh home"
+      >
+        kunal<span>.dev</span>
+      </a>
+      <nav aria-label="Case study navigation">
+        <a href="#flow">Flow</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#source">Source</a>
+      </nav>
+      <a class="header-social" href="/#projects">
+        All projects <span aria-hidden="true">←</span>
+      </a>
+    </header>
+
+    <main id="main">
+      <section class="case-hero" aria-labelledby="case-title">
+        <div class="case-hero-copy">
+          <p class="status-line">
+            <span aria-hidden="true"></span>
+            Case study · public source
+          </p>
+          <h1 id="case-title">
+            A daily note becomes a <span>traceable footprint.</span>
+          </h1>
+          <p class="case-hero-intro">
+            EcoTrace is a TypeScript MERN application that turns a natural-language
+            activity log into estimated energy, transport, and food emissions,
+            saves the result to an account, and brings it back through history,
+            challenges, and a leaderboard.
+          </p>
+          <div class="case-hero-actions">
+            <a
+              id="contact-case-study"
+              class="primary-action"
+              data-contact-location="case-study"
+              aria-label="Discuss a role with Kunal Deshmukh by email"
+              href="mailto:resume-sable-phi@mail.tin.computer?subject=Kunal%20Deshmukh%20portfolio%20inquiry"
+            >
+              Discuss a role <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="text-action"
+              href="https://github.com/mern2026book-cmd/CarbonEmission/tree/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Inspect the source <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <p class="source-proof">
+            <span>Verified contribution</span>
+            The repository history attributes 23 commits to
+            <a
+              href="https://github.com/mern2026book-cmd/CarbonEmission/graphs/contributors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Kunal77744</a>.
+          </p>
+        </div>
+
+        <div class="case-hero-visual project-art ecotrace-art" aria-hidden="true">
+          <div class="browser-chrome">
+            <span></span><span></span><span></span>
+            <small>ecotrace / activity pipeline</small>
+          </div>
+          <div class="eco-dashboard">
+            <div class="eco-sidebar">
+              <b>EcoTrace</b>
+              <span class="eco-nav-active">Overview</span>
+              <span>Log activity</span>
+              <span>History</span>
+            </div>
+            <div class="eco-canvas">
+              <div class="eco-copy">
+                <small>YOUR FOOTPRINT</small>
+                <strong>Build better habits.</strong>
+                <p>Track activity and understand its estimated carbon impact.</p>
+              </div>
+              <img
+                src="/assets/projects/ecotrace-hero.png"
+                alt=""
+                width="343"
+                height="361"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-intro" aria-labelledby="brief-title">
+        <p class="section-index">01 / The brief</p>
+        <div>
+          <h2 id="brief-title">One input, then a complete account-level loop.</h2>
+          <p class="case-lede">
+            The code frames a clear product problem: a person needs to describe
+            everyday behavior quickly, understand an estimated category
+            breakdown, and return later to see what has changed.
+          </p>
+          <div class="case-facts">
+            <article>
+              <span>Interface</span>
+              <h3>React views with guarded routes</h3>
+              <p>
+                Registration and login lead into protected calculator and
+                dashboard views. Session state is restored from a stored token,
+                then checked against the profile API.
+              </p>
+            </article>
+            <article>
+              <span>Server</span>
+              <h3>Express APIs with account ownership</h3>
+              <p>
+                JWT middleware protects footprint routes. History queries and
+                deletion both include the authenticated account identifier.
+              </p>
+            </article>
+            <article>
+              <span>Feedback</span>
+              <h3>History, points, and next actions</h3>
+              <p>
+                Saved logs become dashboard totals and an SVG category
+                breakdown. Challenges, rank progress, and suggestions give the
+                person something concrete to do next.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section" id="flow" aria-labelledby="flow-title">
+        <header class="case-section-heading">
+          <p class="section-index">02 / Core flow</p>
+          <div>
+            <h2 id="flow-title">Follow one activity log through the stack.</h2>
+            <p>
+              Each step below maps to a public route, controller, service, model,
+              or view in the pinned source revision.
+            </p>
+          </div>
+        </header>
+
+        <ol class="flow-list">
+          <li>
+            <span>01</span>
+            <div>
+              <h3>Establish an account session</h3>
+              <p>
+                Register or sign in, receive a JWT, and restore the session
+                through the current-user endpoint before entering protected
+                views.
+              </p>
+            </div>
+            <code>POST /api/auth/login</code>
+          </li>
+          <li>
+            <span>02</span>
+            <div>
+              <h3>Describe the day in plain language</h3>
+              <p>
+                The calculator validates a short activity description and sends
+                it to the protected footprint endpoint.
+              </p>
+            </div>
+            <code>POST /api/footprint/calculate</code>
+          </li>
+          <li>
+            <span>03</span>
+            <div>
+              <h3>Structure, total, and persist</h3>
+              <p>
+                The service requests a strict JSON shape from Gemini, clamps
+                category values to zero or above, totals the result, and saves a
+                MongoDB record tied to the account.
+              </p>
+            </div>
+            <code>Footprint + User</code>
+          </li>
+          <li>
+            <span>04</span>
+            <div>
+              <h3>Bring the record back as feedback</h3>
+              <p>
+                The dashboard fetches history, calculates category totals,
+                renders a responsive SVG chart, and keeps deletion scoped to
+                records owned by the signed-in account.
+              </p>
+            </div>
+            <code>GET /history · DELETE /:id</code>
+          </li>
+        </ol>
+      </section>
+
+      <section
+        class="case-section architecture-section"
+        id="architecture"
+        aria-labelledby="architecture-title"
+      >
+        <header class="case-section-heading">
+          <p class="section-index">03 / Architecture</p>
+          <div>
+            <h2 id="architecture-title">Small layers with visible boundaries.</h2>
+            <p>
+              The repository keeps client views, API routes, domain logic,
+              persistence, and external AI parsing in separate modules.
+            </p>
+          </div>
+        </header>
+
+        <div class="architecture-map" aria-label="EcoTrace architecture">
+          <article>
+            <span>Client</span>
+            <strong>React + TypeScript</strong>
+            <p>Router guards, auth context, calculator, dashboard, and native SVG.</p>
+          </article>
+          <span class="architecture-arrow" aria-hidden="true">→</span>
+          <article>
+            <span>API</span>
+            <strong>Express + TypeScript</strong>
+            <p>Validation, rate limiting, JWT middleware, controllers, and errors.</p>
+          </article>
+          <span class="architecture-arrow" aria-hidden="true">→</span>
+          <article>
+            <span>Data</span>
+            <strong>MongoDB + Mongoose</strong>
+            <p>User, footprint, timestamps, ownership queries, and indexed account IDs.</p>
+          </article>
+          <span class="architecture-arrow" aria-hidden="true">↗</span>
+          <article>
+            <span>Analysis</span>
+            <strong>Gemini 2.5 Flash</strong>
+            <p>Structured category output, suggestions, and a deterministic local fallback.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="constraints-title">
+        <header class="case-section-heading">
+          <p class="section-index">04 / Constraints</p>
+          <div>
+            <h2 id="constraints-title">The code is explicit about its limits.</h2>
+            <p>
+              These are engineering constraints visible in the source, not
+              claims about usage, business results, or calculation accuracy.
+            </p>
+          </div>
+        </header>
+
+        <div class="constraint-grid">
+          <article>
+            <span>Estimate, don't overstate</span>
+            <p>
+              Activity text produces estimated emissions. Missing categories
+              default to zero, and the interface does not present the result as
+              a measured environmental audit.
+            </p>
+          </article>
+          <article>
+            <span>Keep development testable</span>
+            <p>
+              When no Gemini key is available, a deterministic keyword-based
+              fallback preserves the flow without making a network request.
+            </p>
+          </article>
+          <article>
+            <span>Contain account data</span>
+            <p>
+              Protected history and deletion operations use the authenticated
+              account ID. Passwords are hashed before storage.
+            </p>
+          </article>
+          <article>
+            <span>Mock the external edge</span>
+            <p>
+              Integration tests replace the AI service and check authentication,
+              validation, successful calculation, history, and deletion paths.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section source-section" id="source" aria-labelledby="source-title">
+        <header class="case-section-heading">
+          <p class="section-index">05 / Inspect the source</p>
+          <div>
+            <h2 id="source-title">Start with the paths that carry the product.</h2>
+            <p>
+              Every link is pinned to the source revision reviewed for this case
+              study, so the evidence does not drift with later commits.
+            </p>
+          </div>
+        </header>
+
+        <div class="source-paths">
+          <a href="https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/frontend/src/pages/Calculator.tsx" target="_blank" rel="noopener noreferrer">
+            <span>01 / Input</span>
+            <strong>Calculator view</strong>
+            <code>frontend/src/pages/Calculator.tsx</code>
+          </a>
+          <a href="https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/backend/src/controllers/footprint.controller.ts" target="_blank" rel="noopener noreferrer">
+            <span>02 / Orchestration</span>
+            <strong>Footprint controller</strong>
+            <code>backend/src/controllers/footprint.controller.ts</code>
+          </a>
+          <a href="https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/backend/src/services/gemini.service.ts" target="_blank" rel="noopener noreferrer">
+            <span>03 / Analysis</span>
+            <strong>Gemini service</strong>
+            <code>backend/src/services/gemini.service.ts</code>
+          </a>
+          <a href="https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/frontend/src/pages/Dashboard.tsx" target="_blank" rel="noopener noreferrer">
+            <span>04 / Feedback</span>
+            <strong>Dashboard view</strong>
+            <code>frontend/src/pages/Dashboard.tsx</code>
+          </a>
+          <a href="https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/backend/tests/footprint.test.ts" target="_blank" rel="noopener noreferrer">
+            <span>05 / Confidence</span>
+            <strong>Footprint API tests</strong>
+            <code>backend/tests/footprint.test.ts</code>
+          </a>
+        </div>
+      </section>
+
+      <section class="case-contact" aria-labelledby="case-contact-title">
+        <p class="section-index">06 / Next step</p>
+        <div>
+          <h2 id="case-contact-title">Need this kind of full-stack thinking?</h2>
+          <p>
+            Kunal is available for full-time MERN and full-stack roles in Delhi.
+            Send a short note about the role or interview.
+          </p>
+        </div>
+        <a
+          id="contact-case-study-footer"
+          class="secondary-action"
+          data-contact-location="case-study"
+          aria-label="Start a conversation with Kunal Deshmukh by email"
+          href="mailto:resume-sable-phi@mail.tin.computer?subject=Kunal%20Deshmukh%20portfolio%20inquiry"
+        >
+          Start a conversation <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year">2026</span> Kunal Deshmukh</p>
+      <div class="footer-links">
+        <a href="/#projects">All projects</a>
+        <a href="https://github.com/mern2026book-cmd/CarbonEmission" target="_blank" rel="noopener noreferrer">
+          EcoTrace source
+        </a>
+        <a class="tin-credit" href="https://tin.computer">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" fill="#66DC9D"></rect>
+          </svg>
+          <span>Growth by Tin</span>
+        </a>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>

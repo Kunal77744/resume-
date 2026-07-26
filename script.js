@@ -120,7 +120,11 @@ document.addEventListener("click", (event) => {
 
   const contactLocation = contactLink.dataset.contactLocation;
 
-  if (contactLocation !== "hero" && contactLocation !== "footer") {
+  if (
+    contactLocation !== "hero" &&
+    contactLocation !== "footer" &&
+    contactLocation !== "case-study"
+  ) {
     return;
   }
 
