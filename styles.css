@@ -275,6 +275,12 @@ h1 em {
   margin-top: 36px;
 }
 
+.hero-supporting-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
 .primary-action,
 .secondary-action {
   display: inline-flex;
@@ -1437,6 +1443,11 @@ h1 em {
     align-items: flex-start;
     flex-direction: column;
     gap: 14px;
+  }
+
+  .hero-supporting-actions {
+    flex-wrap: wrap;
+    gap: 8px 24px;
   }
 
   .profile-orbit {
