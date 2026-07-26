@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A source-backed case study of AI Study Buddy, Kunal Deshmukh's Python, Streamlit, and Gemini capstone for explanations, document summaries, quizzes, and focus planning."
+    />
+    <meta name="theme-color" content="#090b0a" />
+    <link
+      rel="canonical"
+      href="https://resume-sable-phi.vercel.app/projects/ai-study-buddy/"
+    />
+    <meta
+      property="og:title"
+      content="AI Study Buddy case study | Kunal Deshmukh"
+    />
+    <meta
+      property="og:description"
+      content="Follow a study prompt through Streamlit inputs, Python processing, Gemini generation, session state, and downloadable output."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://resume-sable-phi.vercel.app/projects/ai-study-buddy/"
+    />
+    <meta property="og:site_name" content="Kunal Deshmukh" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      property="og:image"
+      content="https://resume-sable-phi.vercel.app/social-preview.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="Kunal Deshmukh, MERN and full-stack developer"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="AI Study Buddy case study | Kunal Deshmukh"
+    />
+    <meta
+      name="twitter:description"
+      content="A source-backed look at AI Study Buddy's Streamlit interface, Gemini gateway, document processing, quiz state, and current boundaries."
+    />
+    <meta
+      name="twitter:image"
+      content="https://resume-sable-phi.vercel.app/social-preview.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Kunal Deshmukh, MERN and full-stack developer"
+    />
+    <title>AI Study Buddy case study | Kunal Deshmukh</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://resume-sable-phi.vercel.app/projects/ai-study-buddy/#page",
+            "url": "https://resume-sable-phi.vercel.app/projects/ai-study-buddy/",
+            "name": "AI Study Buddy case study | Kunal Deshmukh",
+            "description": "A source-backed case study of AI Study Buddy, a Python and Streamlit study companion using Google Gemini.",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@type": "WebSite",
+              "@id": "https://resume-sable-phi.vercel.app/#website"
+            },
+            "about": {
+              "@type": "SoftwareSourceCode",
+              "name": "AI Study Buddy",
+              "codeRepository": "https://github.com/Kunal77744/AI-Study-Buddy",
+              "programmingLanguage": "Python"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Portfolio",
+                "item": "https://resume-sable-phi.vercel.app/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "AI Study Buddy case study",
+                "item": "https://resume-sable-phi.vercel.app/projects/ai-study-buddy/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <script>
+      !(function (document, posthog) {
+        if (posthog.__SV) return;
+        window.posthog = posthog;
+        posthog._i = [];
+        posthog.init = function (apiKey, config, name) {
+          function stub(target, method) {
+            target[method] = function () {
+              target.push(
+                [method].concat(Array.prototype.slice.call(arguments, 0)),
+              );
+            };
+          }
+          const script = document.createElement("script");
+          script.type = "text/javascript";
+          script.crossOrigin = "anonymous";
+          script.async = true;
+          script.src =
+            config.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") +
+            "/static/array.js";
+          const firstScript = document.getElementsByTagName("script")[0];
+          firstScript.parentNode.insertBefore(script, firstScript);
+          let instance = posthog;
+          if (name !== undefined) {
+            instance = posthog[name] = [];
+          } else {
+            name = "posthog";
+          }
+          instance.people = instance.people || [];
+          instance.toString = function (includePeople) {
+            let label = "posthog";
+            if (name !== "posthog") label += "." + name;
+            if (!includePeople) label += " (stub)";
+            return label;
+          };
+          instance.people.toString = function () {
+            return instance.toString(1) + ".people (stub)";
+          };
+          ["capture", "identify", "register", "register_once", "unregister"].forEach(
+            function (method) {
+              stub(instance, method);
+            },
+          );
+          posthog._i.push([apiKey, config, name]);
+        };
+        posthog.__SV = 1;
+      })(document, window.posthog || []);
+
+      window.posthog.init("phc_Ar99UYERT9QEw5CzW9LT9dWdL9mJppdsj7yM3DpEzFdC", {
+        api_host: "https://us.i.posthog.com",
+        autocapture: false,
+        capture_pageview: true,
+        capture_pageleave: false,
+        disable_session_recording: true,
+        person_profiles: "identified_only",
+      });
+    </script>
+    <script src="/source-attribution.js" defer></script>
+    <script src="/script.js" defer></script>
+  </head>
+  <body id="top" class="case-study-page study-buddy-case-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true">
+      <span data-scroll-progress></span>
+    </div>
+    <div class="ambient-spotlight" data-ambient-spotlight aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a
+        class="wordmark"
+        href="/"
+        aria-label="kunal.dev, Kunal Deshmukh home"
+      >
+        kunal<span>.dev</span>
+      </a>
+      <nav aria-label="Case study navigation">
+        <a href="#flow">Flow</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#source">Source</a>
+      </nav>
+      <a class="header-social" href="/#projects">
+        All projects <span aria-hidden="true">←</span>
+      </a>
+    </header>
+
+    <main id="main">
+      <section class="case-hero" aria-labelledby="case-title">
+        <div class="case-hero-copy">
+          <p class="status-line">
+            <span aria-hidden="true"></span>
+            Case study · public source
+          </p>
+          <h1 id="case-title">
+            One question becomes a <span>study loop.</span>
+          </h1>
+          <p class="case-hero-intro">
+            AI Study Buddy is a Python and Streamlit capstone that sends topic
+            prompts, document summaries, and quiz requests through Google
+            Gemini, then renders explanations, downloads, scorecards, and
+            local focus tools in one interface.
+          </p>
+          <div class="case-hero-actions">
+            <a
+              id="contact-case-study"
+              class="primary-action"
+              data-contact-location="case-study"
+              aria-label="Discuss a role with Kunal Deshmukh by email"
+              href="mailto:resume-sable-phi@mail.tin.computer?subject=Kunal%20Deshmukh%20portfolio%20inquiry"
+            >
+              Discuss a role <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="text-action"
+              href="https://github.com/Kunal77744/AI-Study-Buddy/tree/06114d8669265f7270e1b15c854808b7ec482832"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Inspect the source <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <p class="source-proof">
+            <span>Verified history</span>
+            The reviewed public history contains four commits authored with
+            Kunal's GitHub noreply address, from the initial capstone through
+            document extraction, downloads, quiz parsing, and timer presets.
+          </p>
+        </div>
+
+        <div class="case-hero-visual study-buddy-case-visual" aria-hidden="true">
+          <div class="browser-chrome">
+            <span></span><span></span><span></span>
+            <small>study-buddy / topic explainer</small>
+          </div>
+          <div class="study-buddy-app">
+            <div class="study-buddy-rail">
+              <b>AI Study Buddy</b>
+              <span class="study-buddy-mode-active">Topic explainer</span>
+              <span>Document summary</span>
+              <span>Quiz generator</span>
+              <span>Focus planner</span>
+            </div>
+            <div class="study-buddy-workspace">
+              <small>GEMINI 2.5 FLASH · STUDY MODE</small>
+              <strong>Explain tries with an analogy.</strong>
+              <div class="study-buddy-response">
+                <span>01</span>
+                <p>
+                  Think of a trie as a library shelf where words with the same
+                  beginning share the same path.
+                </p>
+              </div>
+              <div class="study-buddy-output">
+                <span>Step-by-step</span>
+                <span>Key takeaway</span>
+                <span>Reflection question</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-intro" aria-labelledby="brief-title">
+        <p class="section-index">01 / The brief</p>
+        <div>
+          <h2 id="brief-title">Five study surfaces share one model gateway.</h2>
+          <p class="case-lede">
+            The source combines generative study tasks with two local
+            productivity tools. It keeps the implementation compact while
+            showing distinct handling for free text, uploaded files, structured
+            quiz output, downloads, and session-scoped state.
+          </p>
+          <div class="case-facts">
+            <article>
+              <span>Explain</span>
+              <h3>Shape a response around the learner</h3>
+              <p>
+                A topic, audience level, and selected learning features become
+                a structured prompt. The returned explanation stays in
+                Streamlit session state and can be downloaded as Markdown.
+              </p>
+            </article>
+            <article>
+              <span>Summarize</span>
+              <h3>Read text, code, or document uploads</h3>
+              <p>
+                The app accepts pasted content or PDF, text, Markdown, Python,
+                and JSON files. PDF pages are read with pypdf before the
+                extracted text is sent for summarization.
+              </p>
+            </article>
+            <article>
+              <span>Test</span>
+              <h3>Turn model output into a scored quiz</h3>
+              <p>
+                Gemini is asked for a JSON question array. A direct parser and
+                regex fallback feed a Streamlit form, score calculation, and
+                expandable answer explanations.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section" id="flow" aria-labelledby="flow-title">
+        <header class="case-section-heading">
+          <p class="section-index">02 / Core flow</p>
+          <div>
+            <h2 id="flow-title">Follow one prompt from choice to output.</h2>
+            <p>
+              Each step maps to the pinned Python application and its declared
+              dependencies.
+            </p>
+          </div>
+        </header>
+
+        <ol class="flow-list">
+          <li>
+            <span>01</span>
+            <div>
+              <h3>Choose the study surface</h3>
+              <p>
+                Five Streamlit tabs separate topic explanation, document
+                summarization, quiz generation, focus planning, and the
+                architecture notes.
+              </p>
+            </div>
+            <code>st.tabs · five modes</code>
+          </li>
+          <li>
+            <span>02</span>
+            <div>
+              <h3>Normalize the input</h3>
+              <p>
+                Topic controls assemble an explanation prompt. The summary
+                route accepts pasted content or extracts text from an uploaded
+                file before applying format and detail choices.
+              </p>
+            </div>
+            <code>text_input · file_uploader · pypdf</code>
+          </li>
+          <li>
+            <span>03</span>
+            <div>
+              <h3>Call the shared Gemini gateway</h3>
+              <p>
+                One helper resolves the API key, selects Gemini 2.5 Flash or a
+                1.5 mode, sends the prompt, and falls back to Gemini 1.5 Flash
+                if the first SDK request fails.
+              </p>
+            </div>
+            <code>get_gemini_response()</code>
+          </li>
+          <li>
+            <span>04</span>
+            <div>
+              <h3>Render the useful next state</h3>
+              <p>
+                Explanations and summaries render as Markdown with downloads.
+                Quiz JSON becomes answer controls, a calculated score, and
+                review panels stored for the active Streamlit session.
+              </p>
+            </div>
+            <code>session_state · download_button · form</code>
+          </li>
+        </ol>
+      </section>
+
+      <section
+        class="case-section architecture-section"
+        id="architecture"
+        aria-labelledby="architecture-title"
+      >
+        <header class="case-section-heading">
+          <p class="section-index">03 / Architecture</p>
+          <div>
+            <h2 id="architecture-title">Four parts carry the study session.</h2>
+            <p>
+              The reviewed revision keeps the whole application in one Python
+              entry point, with libraries supplying the interface, file
+              extraction, environment loading, and model access.
+            </p>
+          </div>
+        </header>
+
+        <div class="architecture-map" aria-label="AI Study Buddy architecture">
+          <article>
+            <span>Interface</span>
+            <strong>Streamlit tabs</strong>
+            <p>Inputs, uploads, selectors, forms, downloads, scorecards, timers, and goal controls.</p>
+          </article>
+          <span class="architecture-arrow" aria-hidden="true">→</span>
+          <article>
+            <span>Processing</span>
+            <strong>Python helpers</strong>
+            <p>Prompt assembly, PDF text extraction, UTF-8 reads, JSON parsing, scoring, and timer logic.</p>
+          </article>
+          <span class="architecture-arrow" aria-hidden="true">→</span>
+          <article>
+            <span>Generation</span>
+            <strong>Gemini gateway</strong>
+            <p>Google's SDK is the primary path, with a REST request fallback when the SDK is unavailable.</p>
+          </article>
+          <span class="architecture-arrow" aria-hidden="true">→</span>
+          <article>
+            <span>Session</span>
+            <strong>Local app state</strong>
+            <p>Generated text, quiz data, answers, timer status, and study goals remain in Streamlit session state.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="constraints-title">
+        <header class="case-section-heading">
+          <p class="section-index">04 / Constraints</p>
+          <div>
+            <h2 id="constraints-title">The capstone boundary is explicit.</h2>
+            <p>
+              These limits come from the reviewed source. They do not imply
+              learning outcomes, model accuracy, adoption, production scale,
+              or client work.
+            </p>
+          </div>
+        </header>
+
+        <div class="constraint-grid">
+          <article>
+            <span>Configure a key first</span>
+            <p>
+              Model-backed features require a Gemini API key from an environment
+              file or the password-style developer setting. The repository does
+              not include a hosted model credential.
+            </p>
+          </article>
+          <article>
+            <span>Keep state inside the session</span>
+            <p>
+              Explanations, summaries, quiz answers, goals, and timer status use
+              Streamlit session state. There is no account, database, or
+              cross-session persistence layer.
+            </p>
+          </article>
+          <article>
+            <span>Summarize a bounded excerpt</span>
+            <p>
+              The summary prompt sends at most the first 15,000 characters of
+              the extracted content to the model.
+            </p>
+          </article>
+          <article>
+            <span>Extract text, not scanned images</span>
+            <p>
+              PDF support calls pypdf page text extraction. The reviewed
+              revision contains no OCR path for image-only pages.
+            </p>
+          </article>
+          <article>
+            <span>Validate beyond parsing later</span>
+            <p>
+              Quiz handling parses a JSON array directly or through a regex
+              fallback. It does not validate every returned item against a
+              formal schema before rendering its fields.
+            </p>
+          </article>
+          <article>
+            <span>Add automated checks</span>
+            <p>
+              The reviewed repository contains no application-level test suite,
+              so its behavior is documented from the source rather than a
+              passing automated test run.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section source-section" id="source" aria-labelledby="source-title">
+        <header class="case-section-heading">
+          <p class="section-index">05 / Inspect the source</p>
+          <div>
+            <h2 id="source-title">Start with the six implementation seams.</h2>
+            <p>
+              Every link is pinned to the revision reviewed for this case study,
+              so the evidence does not drift with later changes.
+            </p>
+          </div>
+        </header>
+
+        <div class="source-paths source-paths--six">
+          <a href="https://github.com/Kunal77744/AI-Study-Buddy/blob/06114d8669265f7270e1b15c854808b7ec482832/app.py#L161-L183" target="_blank" rel="noopener noreferrer">
+            <span>01 / Documents</span>
+            <strong>File extraction</strong>
+            <code>app.py · extract_text_from_file</code>
+          </a>
+          <a href="https://github.com/Kunal77744/AI-Study-Buddy/blob/06114d8669265f7270e1b15c854808b7ec482832/app.py#L185-L224" target="_blank" rel="noopener noreferrer">
+            <span>02 / Model</span>
+            <strong>Gemini gateway</strong>
+            <code>app.py · get_gemini_response</code>
+          </a>
+          <a href="https://github.com/Kunal77744/AI-Study-Buddy/blob/06114d8669265f7270e1b15c854808b7ec482832/app.py#L226-L250" target="_blank" rel="noopener noreferrer">
+            <span>03 / Parsing</span>
+            <strong>Quiz JSON recovery</strong>
+            <code>app.py · extract_json_quiz</code>
+          </a>
+          <a href="https://github.com/Kunal77744/AI-Study-Buddy/blob/06114d8669265f7270e1b15c854808b7ec482832/app.py#L300-L430" target="_blank" rel="noopener noreferrer">
+            <span>04 / Study</span>
+            <strong>Explain and summarize</strong>
+            <code>app.py · tabs 1–2</code>
+          </a>
+          <a href="https://github.com/Kunal77744/AI-Study-Buddy/blob/06114d8669265f7270e1b15c854808b7ec482832/app.py#L433-L535" target="_blank" rel="noopener noreferrer">
+            <span>05 / Quiz</span>
+            <strong>Generate and score</strong>
+            <code>app.py · tab 3</code>
+          </a>
+          <a href="https://github.com/Kunal77744/AI-Study-Buddy/blob/06114d8669265f7270e1b15c854808b7ec482832/app.py#L537-L602" target="_blank" rel="noopener noreferrer">
+            <span>06 / Focus</span>
+            <strong>Timer and goals</strong>
+            <code>app.py · tab 4</code>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year">2026</span> Kunal Deshmukh</p>
+      <div class="footer-links">
+        <a href="/#projects">All projects</a>
+        <a href="https://github.com/Kunal77744/AI-Study-Buddy" target="_blank" rel="noopener noreferrer">
+          AI Study Buddy source
+        </a>
+        <a class="tin-credit" href="https://tin.computer">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" fill="#66DC9D"></rect>
+          </svg>
+          <span>Growth by Tin</span>
+        </a>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>
