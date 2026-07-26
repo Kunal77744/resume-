@@ -244,8 +244,10 @@
           <article class="concept-study concept-study--signal">
             <div
               class="concept-visual signal-interface"
-              role="img"
-              aria-label="A concept dashboard arranging a focused day into a timeline and priority list"
+              data-signal-desk
+              role="group"
+              aria-labelledby="signal-demo-title"
+              aria-describedby="signal-demo-instructions"
             >
               <div class="signal-sidebar" aria-hidden="true">
                 <span class="signal-logo">S</span>
@@ -254,31 +256,86 @@
                 <span class="signal-nav"></span>
                 <span class="signal-avatar"></span>
               </div>
-              <div class="signal-canvas" aria-hidden="true">
+              <div class="signal-canvas">
                 <div class="signal-topline">
                   <div>
-                    <span class="mock-kicker">Today / 04</span>
+                    <span class="mock-kicker" id="signal-demo-title">
+                      Interactive demo / Today
+                    </span>
                     <strong>Good morning.</strong>
                   </div>
-                  <span class="signal-date">25 Jul</span>
+                  <span class="signal-date" aria-hidden="true">25 Jul</span>
                 </div>
                 <div class="signal-grid">
-                  <div class="signal-focus">
-                    <span class="mock-kicker">Focus block</span>
-                    <strong>Shape the important work first.</strong>
-                    <div class="signal-progress"><span></span></div>
-                    <small>72 min remaining</small>
+                  <div class="signal-focus" aria-live="polite" aria-atomic="true">
+                    <span class="mock-kicker">In focus</span>
+                    <strong data-signal-focus-title>Review direction</strong>
+                    <div
+                      class="signal-progress"
+                      role="progressbar"
+                      aria-label="Planned focus progress"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      aria-valuenow="62"
+                    >
+                      <span data-signal-progress></span>
+                    </div>
+                    <small data-signal-focus-time>42 min planned</small>
+                    <p class="signal-feedback" data-signal-feedback>
+                      Review direction is now the priority.
+                    </p>
                   </div>
-                  <div class="signal-metric">
+                  <div class="signal-metric" aria-hidden="true">
                     <span class="mock-kicker">Momentum</span>
                     <strong>08</strong>
                     <small>calm days</small>
                   </div>
                   <div class="signal-agenda">
-                    <span class="mock-kicker">Up next</span>
-                    <div><time>10:30</time><span>Review direction</span></div>
-                    <div><time>13:00</time><span>Prototype pass</span></div>
-                    <div><time>16:15</time><span>Quiet admin</span></div>
+                    <div class="signal-agenda-heading">
+                      <span class="mock-kicker">Set the priority</span>
+                      <span class="signal-key-hint" id="signal-demo-instructions">
+                        Tab, then Enter
+                      </span>
+                    </div>
+                    <button
+                      class="signal-task is-active"
+                      type="button"
+                      aria-pressed="true"
+                      data-signal-priority="review"
+                      data-signal-title="Review direction"
+                      data-signal-time="42 min planned"
+                      data-signal-progress-value="62"
+                    >
+                      <time datetime="10:30">10:30</time>
+                      <span>Review direction</span>
+                      <small data-signal-task-status>In focus</small>
+                    </button>
+                    <button
+                      class="signal-task"
+                      type="button"
+                      aria-pressed="false"
+                      data-signal-priority="prototype"
+                      data-signal-title="Prototype pass"
+                      data-signal-time="68 min planned"
+                      data-signal-progress-value="38"
+                    >
+                      <time datetime="13:00">13:00</time>
+                      <span>Prototype pass</span>
+                      <small data-signal-task-status>Set priority</small>
+                    </button>
+                    <button
+                      class="signal-task"
+                      type="button"
+                      aria-pressed="false"
+                      data-signal-priority="admin"
+                      data-signal-title="Quiet admin"
+                      data-signal-time="24 min planned"
+                      data-signal-progress-value="84"
+                    >
+                      <time datetime="16:15">16:15</time>
+                      <span>Quiet admin</span>
+                      <small data-signal-task-status>Set priority</small>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -294,8 +351,8 @@
                 </p>
                 <p>
                   This study demonstrates calm information density, clear
-                  prioritisation, and a dashboard that reveals the day without
-                  turning it into noise.
+                  prioritisation, and immediate interface feedback. Choose a
+                  task in the demo to change the day’s focus.
                 </p>
               </div>
             </div>
