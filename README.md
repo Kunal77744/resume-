@@ -10,13 +10,16 @@ The portfolio presents three public projects from Kunal's existing portfolio:
 
 - **EcoTrace** is a MERN carbon emission tracker with authentication, CRUD
   flows, dashboards, and data visualization.
-- **Bookify** is a MERN bookstore with inventory, user, order, search, filter,
-  and cart flows.
+- **Bookify** is a MERN bookstore with catalog search, a free-books filter,
+  signup and login flows, and a browser-persisted cart.
 - **AI Study Buddy** is a Streamlit and Gemini-powered study companion.
 
 It also includes **Signal Desk**, a self-initiated interactive interface study.
 Visitors can choose a priority by pointer or keyboard and see the selected
 state, progress, timing, and live feedback update.
+
+EcoTrace and Bookify each have a dedicated, source-grounded case study with
+pinned code-inspection paths.
 
 ## Implementation
 

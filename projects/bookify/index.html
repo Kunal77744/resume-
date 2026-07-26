@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A source-backed case study of Bookify, Kunal Deshmukh's JavaScript MERN bookstore prototype with catalog search, account flows, and a browser-persisted cart."
+    />
+    <meta name="theme-color" content="#090b0a" />
+    <link
+      rel="canonical"
+      href="https://resume-sable-phi.vercel.app/projects/bookify/"
+    />
+    <meta
+      property="og:title"
+      content="Bookify case study | Kunal Deshmukh"
+    />
+    <meta
+      property="og:description"
+      content="Follow a book from Bookify's MongoDB-backed catalog through browser search, account access, and a persistent React cart."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://resume-sable-phi.vercel.app/projects/bookify/"
+    />
+    <meta property="og:site_name" content="Kunal Deshmukh" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      property="og:image"
+      content="https://resume-sable-phi.vercel.app/social-preview.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="Kunal Deshmukh, MERN and full-stack developer"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Bookify case study | Kunal Deshmukh"
+    />
+    <meta
+      name="twitter:description"
+      content="A source-backed look at Bookify's React catalog, account APIs, browser state, and current checkout boundary."
+    />
+    <meta
+      name="twitter:image"
+      content="https://resume-sable-phi.vercel.app/social-preview.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Kunal Deshmukh, MERN and full-stack developer"
+    />
+    <title>Bookify case study | Kunal Deshmukh</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://resume-sable-phi.vercel.app/projects/bookify/#page",
+            "url": "https://resume-sable-phi.vercel.app/projects/bookify/",
+            "name": "Bookify case study | Kunal Deshmukh",
+            "description": "A source-backed case study of Bookify, a JavaScript MERN bookstore prototype.",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@type": "WebSite",
+              "@id": "https://resume-sable-phi.vercel.app/#website"
+            },
+            "about": {
+              "@type": "SoftwareSourceCode",
+              "name": "Bookify",
+              "codeRepository": "https://github.com/Kunal77744/Shopify",
+              "programmingLanguage": "JavaScript"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Portfolio",
+                "item": "https://resume-sable-phi.vercel.app/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Bookify case study",
+                "item": "https://resume-sable-phi.vercel.app/projects/bookify/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <script>
+      !(function (document, posthog) {
+        if (posthog.__SV) return;
+        window.posthog = posthog;
+        posthog._i = [];
+        posthog.init = function (apiKey, config, name) {
+          function stub(target, method) {
+            target[method] = function () {
+              target.push(
+                [method].concat(Array.prototype.slice.call(arguments, 0)),
+              );
+            };
+          }
+          const script = document.createElement("script");
+          script.type = "text/javascript";
+          script.crossOrigin = "anonymous";
+          script.async = true;
+          script.src =
+            config.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") +
+            "/static/array.js";
+          const firstScript = document.getElementsByTagName("script")[0];
+          firstScript.parentNode.insertBefore(script, firstScript);
+          let instance = posthog;
+          if (name !== undefined) {
+            instance = posthog[name] = [];
+          } else {
+            name = "posthog";
+          }
+          instance.people = instance.people || [];
+          instance.toString = function (includePeople) {
+            let label = "posthog";
+            if (name !== "posthog") label += "." + name;
+            if (!includePeople) label += " (stub)";
+            return label;
+          };
+          instance.people.toString = function () {
+            return instance.toString(1) + ".people (stub)";
+          };
+          ["capture", "identify", "register", "register_once", "unregister"].forEach(
+            function (method) {
+              stub(instance, method);
+            },
+          );
+          posthog._i.push([apiKey, config, name]);
+        };
+        posthog.__SV = 1;
+      })(document, window.posthog || []);
+
+      window.posthog.init("phc_Ar99UYERT9QEw5CzW9LT9dWdL9mJppdsj7yM3DpEzFdC", {
+        api_host: "https://us.i.posthog.com",
+        autocapture: false,
+        capture_pageview: true,
+        capture_pageleave: false,
+        disable_session_recording: true,
+        person_profiles: "identified_only",
+      });
+    </script>
+    <script src="/source-attribution.js" defer></script>
+    <script src="/script.js" defer></script>
+  </head>
+  <body id="top" class="case-study-page bookify-case-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <a
+        class="wordmark"
+        href="/"
+        aria-label="kunal.dev, Kunal Deshmukh home"
+      >
+        kunal<span>.dev</span>
+      </a>
+      <nav aria-label="Case study navigation">
+        <a href="#flow">Flow</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#source">Source</a>
+      </nav>
+      <a class="header-social" href="/#projects">
+        All projects <span aria-hidden="true">←</span>
+      </a>
+    </header>
+
+    <main id="main">
+      <section class="case-hero" aria-labelledby="case-title">
+        <div class="case-hero-copy">
+          <p class="status-line">
+            <span aria-hidden="true"></span>
+            Case study · public source
+          </p>
+          <h1 id="case-title">
+            Search the shelf. <span>Keep the cart.</span>
+          </h1>
+          <p class="case-hero-intro">
+            Bookify is a JavaScript MERN bookstore prototype. It reads a
+            MongoDB-backed catalog, filters titles in the browser, registers and
+            logs in readers through Express endpoints, and keeps the cart across
+            refreshes with local storage.
+          </p>
+          <div class="case-hero-actions">
+            <a
+              id="contact-case-study"
+              class="primary-action"
+              data-contact-location="case-study"
+              aria-label="Discuss a role with Kunal Deshmukh by email"
+              href="mailto:resume-sable-phi@mail.tin.computer?subject=Kunal%20Deshmukh%20portfolio%20inquiry"
+            >
+              Discuss a role <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="text-action"
+              href="https://github.com/Kunal77744/Shopify/tree/fd6be2878de3eab19bcfedd706d749ddfc11c7ed"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Inspect the source <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <p class="source-proof">
+            <span>History boundary</span>
+            The reviewed public history contains one repository-wide snapshot
+            commit. This page describes the observable implementation without
+            inferring a team size or contribution share.
+          </p>
+        </div>
+
+        <div class="case-hero-visual bookify-case-visual" aria-hidden="true">
+          <div class="browser-chrome">
+            <span></span><span></span><span></span>
+            <small>bookify / catalog</small>
+          </div>
+          <div class="bookify-store">
+            <div class="bookify-storebar">
+              <b>Bookify</b>
+              <span>Search by name or title</span>
+              <small>Cart · 2</small>
+            </div>
+            <div class="bookify-showcase">
+              <div class="bookify-showcase-copy">
+                <small>FREE BOOKS</small>
+                <strong>Find it. Keep it.</strong>
+                <p>Search the catalog, then keep a short list across refreshes.</p>
+              </div>
+              <div class="bookify-shelf">
+                <article>
+                  <span>FREE</span>
+                  <b>Clean Code</b>
+                  <small>Added to cart</small>
+                </article>
+                <article>
+                  <span>PREMIUM</span>
+                  <b>Designing Data</b>
+                  <small>Browse title</small>
+                </article>
+                <img
+                  src="/assets/projects/bookify-banner.png"
+                  alt=""
+                  width="460"
+                  height="356"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-intro" aria-labelledby="brief-title">
+        <p class="section-index">01 / The brief</p>
+        <div>
+          <h2 id="brief-title">A small commerce loop with honest edges.</h2>
+          <p class="case-lede">
+            The source covers the path from catalog discovery to cart review.
+            It also makes the current boundary clear: checkout is a visible
+            interface state, not a connected order or payment workflow.
+          </p>
+          <div class="case-facts">
+            <article>
+              <span>Interface</span>
+              <h3>React routes with shared search</h3>
+              <p>
+                The app keeps one search query in its top-level component and
+                passes it to both the home shelf and the full catalog.
+              </p>
+            </article>
+            <article>
+              <span>Server</span>
+              <h3>Express endpoints for books and readers</h3>
+              <p>
+                One route returns the MongoDB book collection. Signup and login
+                routes create readers, reject duplicate emails, and compare
+                hashed passwords.
+              </p>
+            </article>
+            <article>
+              <span>Browser state</span>
+              <h3>Account and cart state survive refreshes</h3>
+              <p>
+                React contexts restore the signed-in reader and cart from local
+                storage. Cart additions are de-duplicated by book ID.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section" id="flow" aria-labelledby="flow-title">
+        <header class="case-section-heading">
+          <p class="section-index">02 / Core flow</p>
+          <div>
+            <h2 id="flow-title">Follow one title from catalog to cart.</h2>
+            <p>
+              Each step maps to a public route, component, context, controller,
+              or model in the pinned source revision.
+            </p>
+          </div>
+        </header>
+
+        <ol class="flow-list">
+          <li>
+            <span>01</span>
+            <div>
+              <h3>Fetch the catalog</h3>
+              <p>
+                The React catalog requests the book collection from Express.
+                The controller returns every MongoDB book record with its name,
+                title, price, category, and image fields.
+              </p>
+            </div>
+            <code>GET /book</code>
+          </li>
+          <li>
+            <span>02</span>
+            <div>
+              <h3>Narrow the shelf in the browser</h3>
+              <p>
+                Search matches book names or titles without case sensitivity.
+                The home shelf first narrows the same catalog to the free
+                category.
+              </p>
+            </div>
+            <code>searchQuery · category === free</code>
+          </li>
+          <li>
+            <span>03</span>
+            <div>
+              <h3>Register or sign in for the full collection</h3>
+              <p>
+                The course route redirects readers without local account state
+                to signup. The server checks duplicate emails, hashes new
+                passwords, and compares credentials during login.
+              </p>
+            </div>
+            <code>POST /user/signup · /login</code>
+          </li>
+          <li>
+            <span>04</span>
+            <div>
+              <h3>Add once, review, and remove</h3>
+              <p>
+                The cart context ignores a second add for the same book ID,
+                persists the list, and supports removal. The cart view totals
+                prices before the unconnected checkout action.
+              </p>
+            </div>
+            <code>CartContext · localStorage</code>
+          </li>
+        </ol>
+      </section>
+
+      <section
+        class="case-section architecture-section"
+        id="architecture"
+        aria-labelledby="architecture-title"
+      >
+        <header class="case-section-heading">
+          <p class="section-index">03 / Architecture</p>
+          <div>
+            <h2 id="architecture-title">Four layers carry the prototype.</h2>
+            <p>
+              The reviewed source separates routed React views, shared browser
+              state, Express handlers, and MongoDB models.
+            </p>
+          </div>
+        </header>
+
+        <div class="architecture-map" aria-label="Bookify architecture">
+          <article>
+            <span>Interface</span>
+            <strong>React + Vite</strong>
+            <p>Catalog cards, search, signup, login, cart review, and responsive views.</p>
+          </article>
+          <span class="architecture-arrow" aria-hidden="true">→</span>
+          <article>
+            <span>State</span>
+            <strong>Router + contexts</strong>
+            <p>Route access, shared search, signed-in reader state, and cart persistence.</p>
+          </article>
+          <span class="architecture-arrow" aria-hidden="true">→</span>
+          <article>
+            <span>API</span>
+            <strong>Express controllers</strong>
+            <p>Book retrieval, reader creation, credential comparison, CORS, and JSON parsing.</p>
+          </article>
+          <span class="architecture-arrow" aria-hidden="true">→</span>
+          <article>
+            <span>Data</span>
+            <strong>MongoDB + Mongoose</strong>
+            <p>Book fields, unique reader emails, and password hashes stored through two models.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="constraints-title">
+        <header class="case-section-heading">
+          <p class="section-index">04 / Constraints</p>
+          <div>
+            <h2 id="constraints-title">The current boundary is visible in the code.</h2>
+            <p>
+              These limits come from the reviewed snapshot. They are not claims
+              about users, sales, production traffic, or business outcomes.
+            </p>
+          </div>
+        </header>
+
+        <div class="constraint-grid">
+          <article>
+            <span>Configure before deployment</span>
+            <p>
+              Catalog and account requests point to a localhost API address in
+              the client. A deployed version would need a configurable public
+              API base.
+            </p>
+          </article>
+          <article>
+            <span>Local access, not server sessions</span>
+            <p>
+              Route access is based on reader data in local storage. The source
+              does not issue or validate a session token or cookie.
+            </p>
+          </article>
+          <article>
+            <span>Filter after fetching</span>
+            <p>
+              The book endpoint returns the full collection. Search and the
+              free-books category filter both run in the browser.
+            </p>
+          </article>
+          <article>
+            <span>Stop before purchase</span>
+            <p>
+              The cart calculates a total and renders a checkout button, but the
+              source has no order model, payment integration, or checkout
+              handler.
+            </p>
+          </article>
+          <article>
+            <span>Add automated checks</span>
+            <p>
+              The backend test command is still a placeholder, and the reviewed
+              snapshot contains no app-level test suite.
+            </p>
+          </article>
+          <article>
+            <span>Keep credit bounded</span>
+            <p>
+              Public history contains one repository-wide snapshot commit, so
+              it does not support a contribution percentage or team-size claim.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section source-section" id="source" aria-labelledby="source-title">
+        <header class="case-section-heading">
+          <p class="section-index">05 / Inspect the source</p>
+          <div>
+            <h2 id="source-title">Start where the product decisions live.</h2>
+            <p>
+              Every link is pinned to the revision reviewed for this case study,
+              so the evidence does not drift with later changes.
+            </p>
+          </div>
+        </header>
+
+        <div class="source-paths source-paths--six">
+          <a href="https://github.com/Kunal77744/Shopify/blob/fd6be2878de3eab19bcfedd706d749ddfc11c7ed/Frontend/src/App.jsx" target="_blank" rel="noopener noreferrer">
+            <span>01 / Routes</span>
+            <strong>Application shell</strong>
+            <code>Frontend/src/App.jsx</code>
+          </a>
+          <a href="https://github.com/Kunal77744/Shopify/blob/fd6be2878de3eab19bcfedd706d749ddfc11c7ed/Frontend/src/components/Course.jsx" target="_blank" rel="noopener noreferrer">
+            <span>02 / Catalog</span>
+            <strong>Catalog search</strong>
+            <code>Frontend/src/components/Course.jsx</code>
+          </a>
+          <a href="https://github.com/Kunal77744/Shopify/blob/fd6be2878de3eab19bcfedd706d749ddfc11c7ed/Frontend/src/context/CartContext.jsx" target="_blank" rel="noopener noreferrer">
+            <span>03 / State</span>
+            <strong>Persistent cart</strong>
+            <code>Frontend/src/context/CartContext.jsx</code>
+          </a>
+          <a href="https://github.com/Kunal77744/Shopify/blob/fd6be2878de3eab19bcfedd706d749ddfc11c7ed/Frontend/src/components/Cart.jsx" target="_blank" rel="noopener noreferrer">
+            <span>04 / Review</span>
+            <strong>Cart summary</strong>
+            <code>Frontend/src/components/Cart.jsx</code>
+          </a>
+          <a href="https://github.com/Kunal77744/Shopify/blob/fd6be2878de3eab19bcfedd706d749ddfc11c7ed/Backend/controller/user.controller.js" target="_blank" rel="noopener noreferrer">
+            <span>05 / Accounts</span>
+            <strong>Reader controller</strong>
+            <code>Backend/controller/user.controller.js</code>
+          </a>
+          <a href="https://github.com/Kunal77744/Shopify/blob/fd6be2878de3eab19bcfedd706d749ddfc11c7ed/Backend/controller/book.controller.js" target="_blank" rel="noopener noreferrer">
+            <span>06 / API</span>
+            <strong>Book controller</strong>
+            <code>Backend/controller/book.controller.js</code>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year">2026</span> Kunal Deshmukh</p>
+      <div class="footer-links">
+        <a href="/#projects">All projects</a>
+        <a href="https://github.com/Kunal77744/Shopify" target="_blank" rel="noopener noreferrer">
+          Bookify source
+        </a>
+        <a class="tin-credit" href="https://tin.computer">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" fill="#66DC9D"></rect>
+          </svg>
+          <span>Growth by Tin</span>
+        </a>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>
