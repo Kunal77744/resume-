@@ -16,7 +16,7 @@ for (const source of allowedSources) {
 
   const taggedMailto = new URL(
     addSourceToMailto(
-      "mailto:resume-sable-phi@mail.tin.computer?subject=Kunal%20Deshmukh%20portfolio%20inquiry",
+      "mailto:resume-sable-phi@mail.tin.computer?subject=MERN%20and%20full-stack%20role%20inquiry",
       source,
     ),
   );
@@ -27,7 +27,7 @@ for (const source of allowedSources) {
   );
   assert.equal(
     taggedMailto.searchParams.get("subject"),
-    "Kunal Deshmukh portfolio inquiry",
+    "MERN and full-stack role inquiry",
   );
   assert.equal(
     taggedMailto.searchParams.get("body"),
@@ -40,7 +40,7 @@ assert.equal(getAllowedSource("?ref=kruti-shah"), null);
 assert.equal(getAllowedSource("?ref=hiring-review-extra"), null);
 
 const untaggedMailto =
-  "mailto:resume-sable-phi@mail.tin.computer?subject=Kunal%20Deshmukh%20portfolio%20inquiry";
+  "mailto:resume-sable-phi@mail.tin.computer?subject=MERN%20and%20full-stack%20role%20inquiry";
 
 assert.equal(addSourceToMailto(untaggedMailto, null), untaggedMailto);
 assert.equal(
