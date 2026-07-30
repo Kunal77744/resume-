@@ -215,7 +215,7 @@ main,
   color: var(--accent);
 }
 
-.site-header nav {
+.primary-navigation {
   display: flex;
   align-items: center;
   gap: 32px;
@@ -263,8 +263,17 @@ main,
   transform-origin: left;
 }
 
-.header-social {
+.header-profiles {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   justify-self: end;
+}
+
+.header-social {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
 }
 
 .hero {
@@ -1740,7 +1749,7 @@ html.motion-ready [data-reveal].is-visible {
     gap: 48px;
   }
 
-  .site-header nav {
+  .primary-navigation {
     gap: 20px;
   }
 
@@ -1797,7 +1806,7 @@ html.motion-ready [data-reveal].is-visible {
     display: none;
   }
 
-  .site-header nav {
+  .primary-navigation {
     display: none;
   }
 
