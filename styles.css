@@ -6,6 +6,457 @@
   font-display: swap;
 }
 
+/* MERN portfolio projects guide */
+
+.mern-guide-hero {
+  min-height: calc(100vh - 88px);
+}
+
+.mern-guide-hero .case-hero-copy h1 {
+  max-width: 10ch;
+}
+
+.mern-guide-visual {
+  display: grid;
+  min-width: 0;
+  min-height: 620px;
+  align-self: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.mern-visual-card {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  min-height: 280px;
+  overflow: hidden;
+  border: 1px solid rgba(244, 243, 237, 0.12);
+}
+
+.mern-visual-card > div {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.mern-visual-card span,
+.mern-visual-card small,
+.mern-breakdown-aside > span,
+.mern-proof-grid span {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mern-visual-card strong {
+  font-family: var(--display);
+  font-size: clamp(34px, 4vw, 58px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.mern-visual-ecotrace {
+  grid-template-columns: minmax(0, 1fr) 48%;
+  align-items: center;
+  padding: 36px 24px 28px 38px;
+  background:
+    radial-gradient(circle at 82% 48%, rgba(96, 230, 189, 0.24), transparent 44%),
+    #0a1814;
+}
+
+.mern-visual-ecotrace > div {
+  gap: 8px;
+}
+
+.mern-visual-ecotrace img {
+  width: min(100%, 210px);
+  justify-self: end;
+  filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.45));
+}
+
+.mern-visual-bookify {
+  grid-template-columns: 46% minmax(0, 1fr);
+  align-items: end;
+  padding: 28px 32px 30px 24px;
+  background:
+    linear-gradient(110deg, rgba(9, 11, 10, 0.16), rgba(9, 11, 10, 0.78)),
+    #342c26;
+}
+
+.mern-visual-bookify::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 48%, rgba(9, 11, 10, 0.46));
+  content: "";
+}
+
+.mern-visual-bookify img {
+  z-index: 1;
+  width: 100%;
+  max-height: 210px;
+  align-self: end;
+  object-fit: contain;
+  object-position: bottom left;
+  filter: saturate(0.75) contrast(1.04);
+}
+
+.mern-visual-bookify > div {
+  align-self: center;
+  gap: 8px;
+  text-align: right;
+}
+
+.mern-project-breakdown {
+  display: grid;
+  grid-template-columns: minmax(190px, 0.34fr) minmax(0, 1fr);
+  border-top: 1px solid var(--line-strong);
+}
+
+.mern-project-breakdown + .mern-project-breakdown {
+  margin-top: 88px;
+}
+
+.mern-breakdown-aside {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px 40px 40px 0;
+  border-right: 1px solid var(--line);
+}
+
+.mern-breakdown-aside > strong {
+  margin-top: 20px;
+  font-family: var(--display);
+  font-size: clamp(44px, 5vw, 68px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.mern-breakdown-aside > p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.mern-breakdown-aside .project-link {
+  margin-top: auto;
+}
+
+.mern-breakdown-body {
+  max-width: 810px;
+  padding: 44px 0 0 64px;
+}
+
+.mern-breakdown-body h3 {
+  max-width: 18ch;
+  margin: 0 0 28px;
+  font-family: var(--display);
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.mern-breakdown-body h4 {
+  margin: 44px 0 14px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mern-breakdown-body > p {
+  max-width: 66ch;
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.mern-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 40px;
+  border: 1px solid var(--line);
+}
+
+.mern-proof-grid > div {
+  min-height: 146px;
+  padding: 24px;
+}
+
+.mern-proof-grid > div:nth-child(even) {
+  border-left: 1px solid var(--line);
+}
+
+.mern-proof-grid > div:nth-child(n + 3) {
+  border-top: 1px solid var(--line);
+}
+
+.mern-proof-grid strong {
+  display: block;
+  max-width: 26ch;
+  margin-top: 34px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.mern-review-list {
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+  list-style: none;
+}
+
+.mern-review-list li {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 32px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.mern-review-list li > span {
+  color: var(--accent);
+  font-family: var(--display);
+  font-size: 34px;
+  font-style: italic;
+}
+
+.mern-review-list h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.mern-review-list p {
+  max-width: 68ch;
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+.mern-comparison-table {
+  border: 1px solid var(--line-strong);
+}
+
+.mern-comparison-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.62fr) repeat(2, minmax(0, 1fr));
+}
+
+.mern-comparison-row + .mern-comparison-row {
+  border-top: 1px solid var(--line);
+}
+
+.mern-comparison-row > span {
+  min-width: 0;
+  padding: 24px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.mern-comparison-row > span + span {
+  border-left: 1px solid var(--line);
+}
+
+.mern-comparison-row > span:first-child {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.mern-comparison-head {
+  background: var(--panel-raised);
+}
+
+.mern-comparison-head > span {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mern-faq-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line);
+}
+
+.mern-faq-list article {
+  padding: 40px 32px 44px;
+}
+
+.mern-faq-list article + article {
+  border-left: 1px solid var(--line);
+}
+
+.mern-faq-list h3 {
+  max-width: 18ch;
+  margin: 0;
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.mern-faq-list p {
+  margin: 64px 0 0;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+@media (max-width: 1080px) {
+  .mern-guide-visual {
+    min-height: 540px;
+  }
+
+  .mern-visual-card {
+    min-height: 240px;
+  }
+
+  .mern-breakdown-body {
+    padding-left: 44px;
+  }
+
+  .mern-faq-list {
+    grid-template-columns: 1fr;
+  }
+
+  .mern-faq-list article {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .mern-faq-list article + article {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .mern-faq-list p {
+    margin: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .mern-guide-hero {
+    min-height: 0;
+  }
+
+  .mern-guide-visual {
+    min-height: 0;
+    padding: 10px;
+  }
+
+  .mern-visual-card {
+    min-height: 230px;
+  }
+
+  .mern-visual-ecotrace {
+    grid-template-columns: minmax(0, 1fr) 42%;
+    padding: 26px 18px 22px;
+  }
+
+  .mern-visual-ecotrace img {
+    width: 130px;
+  }
+
+  .mern-visual-bookify {
+    grid-template-columns: 44% minmax(0, 1fr);
+    padding: 22px 18px;
+  }
+
+  .mern-visual-card strong {
+    font-size: 34px;
+  }
+
+  .mern-project-breakdown {
+    grid-template-columns: 1fr;
+  }
+
+  .mern-project-breakdown + .mern-project-breakdown {
+    margin-top: 64px;
+  }
+
+  .mern-breakdown-aside {
+    min-height: 250px;
+    padding: 32px 0;
+    border-right: 0;
+  }
+
+  .mern-breakdown-body {
+    padding: 40px 0 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .mern-proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mern-proof-grid > div:nth-child(even) {
+    border-left: 0;
+  }
+
+  .mern-proof-grid > div + div {
+    border-top: 1px solid var(--line);
+  }
+
+  .mern-review-list li {
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .mern-comparison-table {
+    border: 0;
+  }
+
+  .mern-comparison-row {
+    grid-template-columns: 1fr;
+    border: 1px solid var(--line);
+  }
+
+  .mern-comparison-row + .mern-comparison-row {
+    margin-top: 14px;
+  }
+
+  .mern-comparison-head {
+    display: none;
+  }
+
+  .mern-comparison-row > span {
+    padding: 18px 20px;
+  }
+
+  .mern-comparison-row > span + span {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .mern-faq-list article {
+    display: block;
+    padding: 32px 20px 36px;
+  }
+
+  .mern-faq-list p {
+    margin-top: 32px;
+  }
+}
+
 @font-face {
   font-family: "Fraunces";
   src: url("/assets/fonts/fraunces-italic.woff2") format("woff2");
