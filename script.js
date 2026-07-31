@@ -424,7 +424,8 @@ document.addEventListener("click", (event) => {
   if (
     contactLocation !== "hero" &&
     contactLocation !== "footer" &&
-    contactLocation !== "case-study"
+    contactLocation !== "case-study" &&
+    contactLocation !== "mern-projects-guide"
   ) {
     return;
   }
