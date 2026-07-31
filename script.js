@@ -210,6 +210,13 @@ if ("IntersectionObserver" in window && navigationLinks.length) {
 const evaluatorSource =
   window.PortfolioAttribution?.getAllowedSource(window.location.search) ?? null;
 
+window.PortfolioProofAnalytics?.captureProofView({
+  proofSurface: document.body?.dataset.proofSurface,
+  evaluatorSource,
+  posthog: window.posthog,
+  documentRoot: document.documentElement,
+});
+
 if (evaluatorSource) {
   document
     .querySelectorAll('a[href^="mailto:"][data-contact-location]')
