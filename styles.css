@@ -796,6 +796,12 @@ h1 em {
   font-weight: 350;
 }
 
+.hero-title-buyer {
+  max-width: 15ch;
+  font-size: clamp(54px, 5.4vw, 80px);
+  line-height: 0.92;
+}
+
 .hero-intro {
   max-width: 59ch;
   margin: 36px 0 0;
