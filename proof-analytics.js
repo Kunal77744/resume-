@@ -13,6 +13,7 @@
     "bookify",
     "ai-study-buddy",
     "mern-projects-guide",
+    "hire-full-stack-developer",
   ]);
   const allowedEvaluatorSources = new Set([
     "hiring-review",

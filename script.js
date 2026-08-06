@@ -432,7 +432,8 @@ document.addEventListener("click", (event) => {
     contactLocation !== "hero" &&
     contactLocation !== "footer" &&
     contactLocation !== "case-study" &&
-    contactLocation !== "mern-projects-guide"
+    contactLocation !== "mern-projects-guide" &&
+    contactLocation !== "hiring-page"
   ) {
     return;
   }

@@ -3448,3 +3448,416 @@ html.motion-ready [data-reveal].is-visible {
     grid-column: auto;
   }
 }
+
+/* Full-stack hiring page */
+.hiring-page .case-hero-copy h1 {
+  max-width: 10.5ch;
+}
+
+.hiring-hero-visual {
+  align-self: stretch;
+  display: grid;
+  place-items: center;
+  min-height: 620px;
+  padding: clamp(18px, 3vw, 42px);
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(rgba(102, 220, 157, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(102, 220, 157, 0.08) 1px, transparent 1px),
+    #0c100e;
+  background-size: 42px 42px;
+}
+
+.hiring-dossier {
+  width: min(100%, 520px);
+  padding: clamp(28px, 4vw, 52px);
+  border: 1px solid rgba(238, 239, 234, 0.62);
+  background: rgba(9, 11, 10, 0.94);
+  box-shadow: 22px 22px 0 rgba(102, 220, 157, 0.16);
+}
+
+.hiring-dossier-head,
+.hiring-dossier-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hiring-dossier-head {
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hiring-dossier-head strong {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  color: var(--ink);
+  background: var(--accent);
+  font-size: 14px;
+}
+
+.hiring-dossier > p {
+  margin: 44px 0 12px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hiring-dossier > h2 {
+  max-width: 8ch;
+  margin: 0 0 42px;
+  font-family: var(--display);
+  font-size: clamp(44px, 5vw, 68px);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+}
+
+.hiring-dossier-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.hiring-dossier-grid article {
+  min-height: 116px;
+  padding: 18px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.hiring-dossier-grid span,
+.hiring-dossier-grid strong {
+  display: block;
+}
+
+.hiring-dossier-grid span {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hiring-dossier-grid strong {
+  margin-top: 26px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.hiring-dossier-foot {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.hiring-dossier-foot span {
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hiring-project-list {
+  display: grid;
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.hiring-project-card {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+  min-height: 520px;
+  background: var(--bg);
+}
+
+.hiring-project-image,
+.hiring-project-code {
+  position: relative;
+  display: grid;
+  min-height: 100%;
+  overflow: hidden;
+  border-right: 1px solid var(--line);
+  background: #101512;
+}
+
+.hiring-project-image {
+  place-items: center;
+  padding: 48px;
+}
+
+.hiring-project-image::after {
+  content: "";
+  position: absolute;
+  inset: 22px;
+  border: 1px solid rgba(238, 239, 234, 0.16);
+  pointer-events: none;
+}
+
+.hiring-project-image img {
+  position: relative;
+  z-index: 1;
+  width: min(70%, 280px);
+  height: auto;
+  filter: saturate(0.72) contrast(1.08);
+}
+
+.hiring-project-image > span,
+.hiring-project-code > span {
+  position: absolute;
+  z-index: 2;
+  top: 36px;
+  left: 36px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.hiring-project-bookify {
+  background: #171310;
+}
+
+.hiring-project-bookify img {
+  width: min(82%, 340px);
+}
+
+.hiring-project-code {
+  place-items: center;
+  padding: 54px;
+  background:
+    radial-gradient(circle at 72% 28%, rgba(102, 220, 157, 0.2), transparent 32%),
+    #0d100f;
+}
+
+.hiring-project-code code {
+  max-width: 20ch;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: clamp(22px, 3vw, 36px);
+  line-height: 1.5;
+  white-space: normal;
+}
+
+.hiring-project-code code::first-line {
+  color: var(--accent);
+}
+
+.hiring-project-copy {
+  padding: clamp(42px, 6vw, 82px);
+}
+
+.hiring-project-copy > p:first-child {
+  margin: 0 0 24px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.hiring-project-copy h3 {
+  max-width: 15ch;
+  margin: 0 0 28px;
+  font-family: var(--display);
+  font-size: clamp(36px, 4.4vw, 58px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+.hiring-project-copy > p:not(:first-child) {
+  max-width: 66ch;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.hiring-project-copy .project-link {
+  margin-top: 32px;
+}
+
+.hiring-review-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.hiring-review-list li {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 70px);
+  padding: 36px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.hiring-review-list li > span {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.hiring-review-list h3 {
+  margin: 0 0 8px;
+  font-family: var(--display);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.hiring-review-list p,
+.hiring-guide-link {
+  max-width: 70ch;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.hiring-guide-link {
+  margin: 36px 0 0 170px;
+}
+
+.hiring-guide-link a {
+  color: var(--ink);
+  text-decoration-color: var(--accent);
+  text-underline-offset: 4px;
+}
+
+.hiring-fit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--line);
+}
+
+.hiring-fit-grid article {
+  min-height: 430px;
+  padding: clamp(34px, 5vw, 64px);
+}
+
+.hiring-fit-grid article + article {
+  border-left: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.hiring-fit-grid span {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.hiring-fit-grid h3 {
+  max-width: 13ch;
+  margin: 72px 0 24px;
+  font-family: var(--display);
+  font-size: clamp(36px, 4vw, 54px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.hiring-fit-grid p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+@media (max-width: 1000px) {
+  .hiring-hero-visual {
+    min-height: 560px;
+  }
+
+  .hiring-project-card {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-project-image,
+  .hiring-project-code {
+    min-height: 420px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 760px) {
+  .hiring-hero-visual {
+    min-height: auto;
+    padding: 14px;
+  }
+
+  .hiring-dossier {
+    padding: 28px 22px;
+    box-shadow: 10px 10px 0 rgba(102, 220, 157, 0.16);
+  }
+
+  .hiring-dossier > h2 {
+    font-size: 46px;
+  }
+
+  .hiring-dossier-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-dossier-grid article {
+    min-height: 94px;
+  }
+
+  .hiring-dossier-grid strong {
+    margin-top: 16px;
+  }
+
+  .hiring-project-image,
+  .hiring-project-code {
+    min-height: 340px;
+    padding: 32px;
+  }
+
+  .hiring-project-copy {
+    padding: 38px 24px 48px;
+  }
+
+  .hiring-project-copy h3 {
+    font-size: 40px;
+  }
+
+  .hiring-review-list li {
+    grid-template-columns: 46px minmax(0, 1fr);
+  }
+
+  .hiring-guide-link {
+    margin-left: 0;
+  }
+
+  .hiring-fit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiring-fit-grid article {
+    min-height: 0;
+  }
+
+  .hiring-fit-grid article + article {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .hiring-fit-grid h3 {
+    margin-top: 46px;
+  }
+}
