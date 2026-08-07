@@ -195,13 +195,12 @@
             Case study · public source
           </p>
           <h1 id="case-title">
-            Search the shelf. <span>Keep the cart.</span>
+            Carry one title. <span>From discovery to cart.</span>
           </h1>
           <p class="case-hero-intro">
-            Bookify is a JavaScript MERN bookstore prototype. It reads a
-            MongoDB-backed catalog, filters titles in the browser, registers and
-            logs in readers through Express endpoints, and keeps the cart across
-            refreshes with local storage.
+            Bookify explores a storefront loop: find a title, use browser-held
+            account state to enter the full catalog, and keep a cart through a
+            refresh.
           </p>
           <div class="case-hero-actions">
             <a
@@ -273,11 +272,11 @@
       <section class="case-intro" aria-labelledby="brief-title">
         <p class="section-index">01 / The brief</p>
         <div>
-          <h2 id="brief-title">A small commerce loop with honest edges.</h2>
+          <h2 id="brief-title">One loop, split across four boundaries.</h2>
           <p class="case-lede">
-            The source covers the path from catalog discovery to cart review.
-            It also makes the current boundary clear: checkout is a visible
-            interface state, not a connected order or payment workflow.
+            Routed React views, browser contexts, Express endpoints, and
+            Mongoose models keep the catalog-to-cart flow inspectable. The
+            source stops before a connected order or payment workflow.
           </p>
           <div class="case-facts">
             <article>
@@ -285,7 +284,8 @@
               <h3>React routes with shared search</h3>
               <p>
                 The app keeps one search query in its top-level component and
-                passes it to both the home shelf and the full catalog.
+                passes it to the home shelf and the full catalog, which each
+                request the book collection on mount.
               </p>
             </article>
             <article>
@@ -299,10 +299,10 @@
             </article>
             <article>
               <span>Browser state</span>
-              <h3>Account and cart state survive refreshes</h3>
+              <h3>Account and cart state restore locally</h3>
               <p>
-                React contexts restore the signed-in reader and cart from local
-                storage. Cart additions are de-duplicated by book ID.
+                React contexts read the signed-in reader and cart from local
+                storage. Cart additions ignore a book ID already present.
               </p>
             </article>
           </div>
@@ -327,9 +327,9 @@
             <div>
               <h3>Fetch the catalog</h3>
               <p>
-                The React catalog requests the book collection from Express.
-                The controller returns every MongoDB book record with its name,
-                title, price, category, and image fields.
+                The home shelf and full-catalog surface each request the book
+                collection from Express. The controller returns the complete
+                MongoDB collection before browser filtering begins.
               </p>
             </div>
             <code>GET /book</code>
@@ -351,9 +351,9 @@
             <div>
               <h3>Register or sign in for the full collection</h3>
               <p>
-                The course route redirects readers without local account state
-                to signup. The server checks duplicate emails, hashes new
-                passwords, and compares credentials during login.
+                A client-side route check redirects readers without local
+                account data to signup. The server rejects duplicate emails,
+                hashes new passwords, and compares saved hashes during login.
               </p>
             </div>
             <code>POST /user/signup · /login</code>
@@ -467,10 +467,26 @@
             </p>
           </article>
           <article>
+            <span>Guard missing login records</span>
+            <p>
+              Login reads the saved password before checking whether the email
+              exists. The missing-user check needs to run before password
+              comparison.
+            </p>
+          </article>
+          <article>
             <span>Keep credit bounded</span>
             <p>
               Public history contains one repository-wide snapshot commit, so
               it does not support a contribution percentage or team-size claim.
+            </p>
+          </article>
+          <article>
+            <span>Source-observed, not a live store</span>
+            <p>
+              No working public Bookify demo is linked. The behavior described
+              here comes from the pinned source rather than a connected public
+              storefront.
             </p>
           </article>
         </div>
