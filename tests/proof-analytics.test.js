@@ -39,7 +39,7 @@ for (const [page, proofSurface] of proofPages) {
 
 assert.match(
   script,
-  /PortfolioProofAnalytics\?\.captureProofView\(\{\s*proofSurface: document\.body\?\.dataset\.proofSurface,\s*evaluatorSource,\s*posthog: window\.posthog,\s*documentRoot: document\.documentElement,\s*\}\);/,
+  /PortfolioProofAnalytics\?\.captureProofView\(\{\s*proofSurface: document\.body\?\.dataset\.proofSurface,\s*evaluatorSource,\s*posthog: analyticsEnabled \? window\.posthog : null,\s*documentRoot: document\.documentElement,\s*\}\);/,
   "the shared script should capture the declared surface with only allowlisted attribution",
 );
 

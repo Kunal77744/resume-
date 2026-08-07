@@ -209,11 +209,12 @@ if ("IntersectionObserver" in window && navigationLinks.length) {
 
 const evaluatorSource =
   window.PortfolioAttribution?.getAllowedSource(window.location.search) ?? null;
+const analyticsEnabled = window.__portfolioAnalyticsEnabled !== false;
 
 window.PortfolioProofAnalytics?.captureProofView({
   proofSurface: document.body?.dataset.proofSurface,
   evaluatorSource,
-  posthog: window.posthog,
+  posthog: analyticsEnabled ? window.posthog : null,
   documentRoot: document.documentElement,
 });
 
@@ -282,7 +283,10 @@ if (signalDesk) {
       progress.style.width = `${progressValue}%`;
       progressBar.setAttribute("aria-valuenow", String(progressValue));
 
-      if (typeof window.posthog?.capture === "function") {
+      if (
+        analyticsEnabled &&
+        typeof window.posthog?.capture === "function"
+      ) {
         const interactionProperties = {
           selected_priority: priority,
           interaction_method: event.detail === 0 ? "keyboard" : "pointer",
@@ -384,7 +388,10 @@ if (
     copyEmailButton.dataset.copyState = "copied";
     copyEmailStatus.textContent = "Email address copied to clipboard.";
 
-    if (typeof window.posthog?.capture === "function") {
+    if (
+      analyticsEnabled &&
+      typeof window.posthog?.capture === "function"
+    ) {
       window.posthog.capture("contact_copied", {
         contact_location: copyEmailButton.dataset.copyLocation,
       });
@@ -405,7 +412,11 @@ document.addEventListener("click", (event) => {
       ? event.target.closest("[data-resume-download]")
       : null;
 
-  if (resumeLink && typeof window.posthog?.capture === "function") {
+  if (
+    resumeLink &&
+    analyticsEnabled &&
+    typeof window.posthog?.capture === "function"
+  ) {
     const resumeProperties = {
       download_location: "hero",
     };
@@ -422,7 +433,11 @@ document.addEventListener("click", (event) => {
       ? event.target.closest('a[href^="mailto:"]')
       : null;
 
-  if (!contactLink || typeof window.posthog?.capture !== "function") {
+  if (
+    !contactLink ||
+    !analyticsEnabled ||
+    typeof window.posthog?.capture !== "function"
+  ) {
     return;
   }
 

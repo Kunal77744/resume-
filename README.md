@@ -62,6 +62,10 @@ contact location, input method, selected Signal Desk priority, and an optional
 non-personal evaluator source. Email addresses, resume contents, task text, and
 message contents are not sent in event payloads.
 
+Production verification visits should add `?analytics=off` to the page URL.
+That exact query value skips PostHog initialization and every manual event on
+the page, keeping internal checks out of portfolio usage counts.
+
 ## View locally
 
 From the repository root, start a static server:

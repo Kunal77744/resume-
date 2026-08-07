@@ -142,9 +142,13 @@
         ]
       }
     </script>
+    <script src="/analytics-control.js"></script>
     <script>
+      window.__portfolioAnalyticsEnabled =
+        window.PortfolioAnalytics.isEnabled(window.location.search);
+
       !(function (document, posthog) {
-        if (posthog.__SV) return;
+        if (!window.__portfolioAnalyticsEnabled || posthog.__SV) return;
         window.posthog = posthog;
         posthog._i = [];
         posthog.init = function (apiKey, config, name) {
@@ -190,7 +194,7 @@
         posthog.__SV = 1;
       })(document, window.posthog || []);
 
-      window.posthog.init("phc_Ar99UYERT9QEw5CzW9LT9dWdL9mJppdsj7yM3DpEzFdC", {
+      window.posthog?.init("phc_Ar99UYERT9QEw5CzW9LT9dWdL9mJppdsj7yM3DpEzFdC", {
         api_host: "https://us.i.posthog.com",
         autocapture: false,
         capture_pageview: true,
