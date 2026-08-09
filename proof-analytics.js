@@ -14,6 +14,7 @@
     "ai-study-buddy",
     "mern-projects-guide",
     "hire-full-stack-developer",
+    "project-proof",
   ]);
   const allowedEvaluatorSources = new Set([
     "hiring-review",

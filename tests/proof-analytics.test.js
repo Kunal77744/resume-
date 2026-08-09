@@ -17,6 +17,7 @@ const proofPages = new Map([
   ["projects/ai-study-buddy/index.html", "ai-study-buddy"],
   ["mern-stack-portfolio-projects/index.html", "mern-projects-guide"],
   ["hire-full-stack-developer/index.html", "hire-full-stack-developer"],
+  ["project-proof/index.html", "project-proof"],
 ]);
 
 for (const [page, proofSurface] of proofPages) {

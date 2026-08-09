@@ -8,6 +8,7 @@ const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 
 const guide = read("mern-stack-portfolio-projects/index.html");
 const hiringPage = read("hire-full-stack-developer/index.html");
+const projectProof = read("project-proof/index.html");
 const script = read("script.js");
 const projectPages = [
   "projects/ecotrace/index.html",
@@ -44,6 +45,16 @@ assert.match(
   script,
   /contactLocation !== "hiring-page"/,
   "the analytics allowlist should accept the hiring page location",
+);
+assert.match(
+  projectProof,
+  /data-contact-location="project-proof"/,
+  "the project proof page should have its own contact location",
+);
+assert.match(
+  script,
+  /contactLocation !== "project-proof"/,
+  "the analytics allowlist should accept the project proof location",
 );
 
 for (const projectPage of projectPages) {
