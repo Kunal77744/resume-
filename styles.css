@@ -464,6 +464,11 @@
   gap: 32px;
 }
 
+.project-proof-page .header-social {
+  justify-self: end;
+  margin-left: 32px;
+}
+
 .proof-hero .case-hero-copy h1 {
   max-width: 10.5ch;
   font-size: clamp(58px, 6.5vw, 96px);
