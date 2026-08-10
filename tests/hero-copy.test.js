@@ -28,7 +28,7 @@ assert.match(
 );
 assert.match(
   html,
-  /href="\/Kunal-Deshmukh-Resume\.pdf"[\s\S]*?data-resume-download/,
+  /href="\/Kunal-Deshmukh-Full-Stack-Developer-Resume\.pdf"[\s\S]*?download="Kunal-Deshmukh-Full-Stack-Developer-Resume\.pdf"[\s\S]*?data-resume-download/,
   "the hero should preserve the measured resume download",
 );
 assert.match(

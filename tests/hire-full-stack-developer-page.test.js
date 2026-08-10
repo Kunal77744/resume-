@@ -22,7 +22,14 @@ assert.match(html, /href="\/projects\/ecotrace\/"/);
 assert.match(html, /href="\/projects\/bookify\/"/);
 assert.match(html, /href="\/projects\/ai-study-buddy\/"/);
 assert.match(html, /href="\/mern-stack-portfolio-projects\/"/);
-assert.match(html, /href="\/Kunal-Deshmukh-Resume\.pdf"/);
+assert.match(
+  html,
+  /href="\/Kunal-Deshmukh-Full-Stack-Developer-Resume\.pdf"/,
+);
+assert.match(
+  html,
+  /download="Kunal-Deshmukh-Full-Stack-Developer-Resume\.pdf"/,
+);
 assert.match(
   homepage,
   /href="\/hire-full-stack-developer\/">proof-first hiring brief<\/a>/,

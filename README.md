@@ -6,7 +6,7 @@ A recruiter inspection guide for Kunal Deshmukh's MERN and full-stack work.
 
 1. [Open the live portfolio](https://resume-sable-phi.vercel.app/) for the
    project overview, experience, credentials, and interactive Signal Desk study.
-2. [Download the one-page resume](https://resume-sable-phi.vercel.app/Kunal-Deshmukh-Resume.pdf)
+2. [Download the one-page resume](https://resume-sable-phi.vercel.app/Kunal-Deshmukh-Full-Stack-Developer-Resume.pdf)
    for a portable summary of the same verified work.
 3. Choose a project below for the product flow, architecture, constraints, and
    commit-pinned source paths.

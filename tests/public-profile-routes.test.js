@@ -21,11 +21,18 @@ for (const file of publicDocuments) {
 
 const homepage = fs.readFileSync(path.join(root, "index.html"), "utf8");
 assert.match(homepage, /href="https:\/\/github\.com\/Kunal77744"/);
-assert.match(homepage, /href="\/Kunal-Deshmukh-Resume\.pdf"/);
+assert.match(
+  homepage,
+  /href="\/Kunal-Deshmukh-Full-Stack-Developer-Resume\.pdf"/,
+);
+assert.match(
+  homepage,
+  /download="Kunal-Deshmukh-Full-Stack-Developer-Resume\.pdf"/,
+);
 assert.match(homepage, /href="mailto:resume-sable-phi@mail\.tin\.computer/);
 
 const resumePdf = fs.readFileSync(
-  path.join(root, "Kunal-Deshmukh-Resume.pdf"),
+  path.join(root, "Kunal-Deshmukh-Full-Stack-Developer-Resume.pdf"),
 );
 assert.equal(
   resumePdf.includes(Buffer.from(brokenLinkedInUrl)),
