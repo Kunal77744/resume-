@@ -13,6 +13,7 @@ const script = read("script.js");
 
 const proofPages = new Map([
   ["projects/ecotrace/index.html", "ecotrace"],
+  ["projects/ecotrace/technical-walkthrough/index.html", "ecotrace-walkthrough"],
   ["projects/bookify/index.html", "bookify"],
   ["projects/ai-study-buddy/index.html", "ai-study-buddy"],
   ["mern-stack-portfolio-projects/index.html", "mern-projects-guide"],
