@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="See how EcoTrace turns Gemini output into non-negative, account-owned emission records, and why its deterministic fallback trades nuance for a testable flow."
+    />
+    <meta name="theme-color" content="#090b0a" />
+    <link rel="canonical" href="https://resume-sable-phi.vercel.app/projects/ecotrace/technical-walkthrough/" />
+    <meta property="og:title" content="EcoTrace technical walkthrough | Kunal Deshmukh" />
+    <meta property="og:description" content="A source-checked walkthrough of the boundary between Gemini output and persisted EcoTrace data." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://resume-sable-phi.vercel.app/projects/ecotrace/technical-walkthrough/" />
+    <meta property="og:site_name" content="Kunal Deshmukh" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://resume-sable-phi.vercel.app/social-preview.png" />
+    <meta property="og:image:alt" content="Kunal Deshmukh, MERN / Full Stack Developer" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="EcoTrace technical walkthrough | Kunal Deshmukh" />
+    <meta name="twitter:description" content="From probabilistic model response to non-negative, account-owned data." />
+    <meta name="twitter:image" content="https://resume-sable-phi.vercel.app/social-preview.png" />
+    <title>EcoTrace technical walkthrough | Kunal Deshmukh</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "TechArticle",
+            "@id": "https://resume-sable-phi.vercel.app/projects/ecotrace/technical-walkthrough/#article",
+            "url": "https://resume-sable-phi.vercel.app/projects/ecotrace/technical-walkthrough/",
+            "headline": "Putting a deterministic boundary around EcoTrace model output",
+            "description": "A source-checked walkthrough of EcoTrace's structured model response, numeric normalization, persistence boundary, and deterministic fallback.",
+            "datePublished": "2026-08-11",
+            "dateModified": "2026-08-11",
+            "inLanguage": "en",
+            "author": {
+              "@type": "Person",
+              "@id": "https://resume-sable-phi.vercel.app/#kunal-deshmukh",
+              "name": "Kunal Deshmukh"
+            },
+            "isPartOf": {
+              "@type": "WebSite",
+              "@id": "https://resume-sable-phi.vercel.app/#website"
+            },
+            "about": {
+              "@type": "SoftwareSourceCode",
+              "name": "EcoTrace",
+              "codeRepository": "https://github.com/mern2026book-cmd/CarbonEmission/tree/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a",
+              "programmingLanguage": ["TypeScript", "JavaScript"]
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Portfolio",
+                "item": "https://resume-sable-phi.vercel.app/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "EcoTrace case study",
+                "item": "https://resume-sable-phi.vercel.app/projects/ecotrace/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Technical walkthrough",
+                "item": "https://resume-sable-phi.vercel.app/projects/ecotrace/technical-walkthrough/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <script src="/analytics-control.js"></script>
+    <script>
+      window.__portfolioAnalyticsEnabled =
+        window.PortfolioAnalytics.isEnabled(window.location.search);
+
+      !(function (document, posthog) {
+        if (!window.__portfolioAnalyticsEnabled || posthog.__SV) return;
+        window.posthog = posthog;
+        posthog._i = [];
+        posthog.init = function (apiKey, config, name) {
+          function stub(target, method) {
+            target[method] = function () {
+              target.push([method].concat(Array.prototype.slice.call(arguments, 0)));
+            };
+          }
+          const script = document.createElement("script");
+          script.type = "text/javascript";
+          script.crossOrigin = "anonymous";
+          script.async = true;
+          script.src =
+            config.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") +
+            "/static/array.js";
+          const firstScript = document.getElementsByTagName("script")[0];
+          firstScript.parentNode.insertBefore(script, firstScript);
+          let instance = posthog;
+          if (name !== undefined) instance = posthog[name] = [];
+          else name = "posthog";
+          instance.people = instance.people || [];
+          instance.toString = function (includePeople) {
+            let label = "posthog";
+            if (name !== "posthog") label += "." + name;
+            if (!includePeople) label += " (stub)";
+            return label;
+          };
+          instance.people.toString = function () {
+            return instance.toString(1) + ".people (stub)";
+          };
+          ["capture", "identify", "register", "register_once", "unregister"].forEach(
+            function (method) { stub(instance, method); },
+          );
+          posthog._i.push([apiKey, config, name]);
+        };
+        posthog.__SV = 1;
+      })(document, window.posthog || []);
+
+      window.posthog?.init("phc_Ar99UYERT9QEw5CzW9LT9dWdL9mJppdsj7yM3DpEzFdC", {
+        api_host: "https://us.i.posthog.com",
+        autocapture: false,
+        capture_pageview: true,
+        capture_pageleave: false,
+        disable_session_recording: true,
+        person_profiles: "identified_only",
+      });
+    </script>
+    <script src="/source-attribution.js" defer></script>
+    <script src="/proof-analytics.js" defer></script>
+    <script src="/script.js" defer></script>
+  </head>
+  <body id="top" class="case-study-page ecotrace-walkthrough-page" data-proof-surface="ecotrace-walkthrough">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"><span data-scroll-progress></span></div>
+    <div class="ambient-spotlight" data-ambient-spotlight aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="kunal.dev, Kunal Deshmukh home">kunal<span>.dev</span></a>
+      <nav aria-label="Technical walkthrough navigation">
+        <a href="#boundary">Boundary</a>
+        <a href="#tradeoff">Tradeoff</a>
+        <a href="#source">Source</a>
+      </nav>
+      <a class="header-social" href="/projects/ecotrace/">EcoTrace <span aria-hidden="true">←</span></a>
+    </header>
+
+    <main id="main">
+      <section class="case-hero walkthrough-hero" aria-labelledby="walkthrough-title">
+        <div class="case-hero-copy">
+          <p class="status-line"><span aria-hidden="true"></span>Technical walkthrough · EcoTrace</p>
+          <h1 id="walkthrough-title">Put a deterministic boundary around <span>model output.</span></h1>
+          <p class="case-hero-intro">
+            EcoTrace's hard problem is not making one Gemini call. It is turning
+            a probabilistic response into three non-negative numeric categories
+            before that result becomes an account-owned database record.
+          </p>
+          <div class="case-hero-actions">
+            <a
+              class="primary-action"
+              data-contact-location="case-study"
+              aria-label="Discuss a role with Kunal Deshmukh by email"
+              href="mailto:resume-sable-phi@mail.tin.computer?subject=MERN%20and%20full-stack%20role%20inquiry"
+            >Discuss a role <span aria-hidden="true">↗</span></a>
+            <a class="text-action" href="/projects/ecotrace/">Read the case study <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="source-proof">
+            <span>Evidence boundary</span>
+            This walkthrough follows the public repository at commit
+            <a href="https://github.com/mern2026book-cmd/CarbonEmission/tree/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a" target="_blank" rel="noopener noreferrer"><code>c6b7bd8</code></a>.
+            It documents implemented behavior, not calculation accuracy,
+            production traffic, or business results.
+          </p>
+        </div>
+
+        <div class="walkthrough-pipeline" aria-label="EcoTrace data boundary">
+          <div class="walkthrough-pipeline-head"><span>One request / four boundaries</span><strong>TypeScript</strong></div>
+          <ol>
+            <li><span>01 / Input</span><strong>Activity text</strong><code>trim() · min(3)</code></li>
+            <li><span>02 / Model</span><strong>Required JSON</strong><code>responseMimeType: application/json</code></li>
+            <li><span>03 / Domain</span><strong>Non-negative numbers</strong><code>Math.max(0, Number(value) || 0)</code></li>
+            <li><span>04 / Data</span><strong>Account-owned record</strong><code>Footprint({ userId, ... }).save()</code></li>
+          </ol>
+          <p>Natural language → bounded domain data → MongoDB</p>
+        </div>
+      </section>
+
+      <section class="case-intro walkthrough-brief" aria-labelledby="problem-title">
+        <p class="section-index">01 / The hard problem</p>
+        <div>
+          <h2 id="problem-title">A typed interface cannot trust a model-shaped answer.</h2>
+          <p class="case-lede">
+            A model request can fail, return no text, produce malformed JSON, or
+            put an unexpected value in a numeric field. EcoTrace narrows that
+            uncertainty before the controller calculates a total or saves a record.
+          </p>
+          <div class="walkthrough-risk-ledger" aria-label="Model boundary risks and responses">
+            <article>
+              <span>Risk 01</span>
+              <h3>Missing or malformed response</h3>
+              <p>An empty response throws. JSON parsing and the model request share one catch path into the local fallback.</p>
+            </article>
+            <article>
+              <span>Risk 02</span>
+              <h3>Wrong numeric shape</h3>
+              <p>Each category passes through <code>Number</code>, defaults to zero, and is clamped at zero or above.</p>
+            </article>
+            <article>
+              <span>Risk 03</span>
+              <h3>Unscoped persistence</h3>
+              <p>The controller reads the authenticated ID and stores it as <code>userId</code> on the footprint record.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section" id="boundary" aria-labelledby="boundary-title">
+        <header class="case-section-heading">
+          <p class="section-index">02 / The boundary</p>
+          <div>
+            <h2 id="boundary-title">Constrain early, normalize once, defend again.</h2>
+            <p>The source uses several small checks rather than asking one layer to make an external response trustworthy by itself.</p>
+          </div>
+        </header>
+        <ol class="walkthrough-boundary-list">
+          <li>
+            <span>01</span>
+            <div>
+              <p class="walkthrough-step-kicker">Request boundary</p>
+              <h3>Reject unusable input before the model call.</h3>
+              <p>The route runs Zod validation after JWT authentication. The activity value must be a trimmed string with at least three characters.</p>
+            </div>
+            <code>calculateFootprintSchema</code>
+          </li>
+          <li>
+            <span>02</span>
+            <div>
+              <p class="walkthrough-step-kicker">Response boundary</p>
+              <h3>Ask for one explicit response contract.</h3>
+              <p>The Gemini request sets an <code>application/json</code> response type and requires three number fields plus a suggestions array.</p>
+            </div>
+            <code>responseSchema</code>
+          </li>
+          <li>
+            <span>03</span>
+            <div>
+              <p class="walkthrough-step-kicker">Domain boundary</p>
+              <h3>Normalize before the data leaves the service.</h3>
+              <p>Parsed categories become numbers, missing or non-numeric values become zero, negative values are clamped, and non-array suggestions become an empty list.</p>
+            </div>
+            <code>CarbonFootprintResult</code>
+          </li>
+          <li>
+            <span>04</span>
+            <div>
+              <p class="walkthrough-step-kicker">Persistence boundary</p>
+              <h3>Repeat the invariant where the record is made.</h3>
+              <p>The total utility clamps and rounds the three categories. The Mongoose model also requires every emission value and enforces a minimum of zero.</p>
+            </div>
+            <code>sumEmissions · FootprintSchema</code>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-section walkthrough-tradeoff-section" id="tradeoff" aria-labelledby="tradeoff-title">
+        <header class="case-section-heading">
+          <p class="section-index">03 / The tradeoff</p>
+          <div>
+            <h2 id="tradeoff-title">Keep the flow available, give up semantic nuance.</h2>
+            <p>When the Gemini key is missing or the request throws, the service returns a deterministic keyword-based estimate with the same result shape.</p>
+          </div>
+        </header>
+        <div class="walkthrough-tradeoff">
+          <article class="walkthrough-tradeoff-gain">
+            <span>What the fallback buys</span>
+            <strong>A predictable development path.</strong>
+            <p>Local work can exercise the controller, total, persistence, and interface without a model request. The service tests can also assert exact category values for known keywords and API exceptions.</p>
+          </article>
+          <div class="walkthrough-tradeoff-mark" aria-hidden="true">↔</div>
+          <article class="walkthrough-tradeoff-cost">
+            <span>What the fallback costs</span>
+            <strong>Fixed values instead of context.</strong>
+            <p>The fallback checks whether words such as <code>car</code>, <code>energy</code>, or <code>food</code> appear. It does not parse distance, quantity, duration, or intensity, and it returns the same three suggestions.</p>
+          </article>
+        </div>
+        <aside class="walkthrough-decision" aria-label="Engineering decision">
+          <span>Decision</span>
+          <p>Use the fallback to preserve a testable end-to-end shape, not as evidence of estimate accuracy. That boundary is why the portfolio describes EcoTrace results as estimates rather than an environmental audit.</p>
+        </aside>
+      </section>
+
+      <section class="case-section source-section" id="source" aria-labelledby="source-title">
+        <header class="case-section-heading">
+          <p class="section-index">04 / Inspect the source</p>
+          <div>
+            <h2 id="source-title">Check every boundary in the reviewed revision.</h2>
+            <p>These links point directly to the files behind the walkthrough, all pinned to the same public commit.</p>
+          </div>
+        </header>
+        <div class="source-paths source-paths--six">
+          <a href="https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/backend/src/validations/footprint.validation.ts" target="_blank" rel="noopener noreferrer"><span>01 / Input</span><strong>Request validation</strong><code>footprint.validation.ts</code></a>
+          <a href="https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/backend/src/services/gemini.service.ts" target="_blank" rel="noopener noreferrer"><span>02 / Model</span><strong>Gemini boundary</strong><code>gemini.service.ts</code></a>
+          <a href="https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/backend/src/utils/emissions.ts" target="_blank" rel="noopener noreferrer"><span>03 / Total</span><strong>Emission sum</strong><code>emissions.ts</code></a>
+          <a href="https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/backend/src/controllers/footprint.controller.ts" target="_blank" rel="noopener noreferrer"><span>04 / Record</span><strong>API orchestration</strong><code>footprint.controller.ts</code></a>
+          <a href="https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/backend/src/models/Footprint.ts" target="_blank" rel="noopener noreferrer"><span>05 / Data</span><strong>Footprint model</strong><code>Footprint.ts</code></a>
+          <a href="https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/backend/tests/gemini.test.ts" target="_blank" rel="noopener noreferrer"><span>06 / Tests</span><strong>Fallback coverage</strong><code>gemini.test.ts</code></a>
+        </div>
+      </section>
+
+      <section class="case-contact" aria-labelledby="case-contact-title">
+        <p class="section-index">05 / Next step</p>
+        <div>
+          <h2 id="case-contact-title">Need this kind of full-stack boundary work?</h2>
+          <p>Kunal is a MERN / Full Stack Developer available for full-time roles in Delhi. Send a short note about the role or interview.</p>
+        </div>
+        <a class="secondary-action" data-contact-location="case-study" aria-label="Start a conversation with Kunal Deshmukh by email" href="mailto:resume-sable-phi@mail.tin.computer?subject=MERN%20and%20full-stack%20role%20inquiry">Start a conversation <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year">2026</span> Kunal Deshmukh</p>
+      <div class="footer-links">
+        <a href="/projects/ecotrace/">EcoTrace case study</a>
+        <a href="/project-proof/">Project proof</a>
+        <a class="tin-credit" href="https://tin.computer">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#66DC9D"></rect></svg>
+          <span>Growth by Tin</span>
+        </a>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>

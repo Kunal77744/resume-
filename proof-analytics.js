@@ -10,6 +10,7 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   const allowedProofSurfaces = new Set([
     "ecotrace",
+    "ecotrace-walkthrough",
     "bookify",
     "ai-study-buddy",
     "mern-projects-guide",
