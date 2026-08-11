@@ -9,6 +9,13 @@ const html = fs.readFileSync(
 );
 const homepage = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
+const socialPreview = fs.readFileSync(
+  path.join(root, "hire-full-stack-developer/social-preview.png"),
+);
+const socialPreviewSource = fs.readFileSync(
+  path.join(root, "hire-full-stack-developer/social-preview.svg"),
+  "utf8",
+);
 
 assert.match(html, /<title>Hire a Full Stack Developer \| Kunal Deshmukh<\/title>/);
 assert.match(
@@ -30,6 +37,26 @@ assert.match(
   html,
   /download="Kunal-Deshmukh-Full-Stack-Developer-Resume\.pdf"/,
 );
+assert.match(
+  html,
+  /property="og:image"\s+content="https:\/\/resume-sable-phi\.vercel\.app\/hire-full-stack-developer\/social-preview\.png"/,
+);
+assert.match(html, /property="og:image:width" content="1200"/);
+assert.match(html, /property="og:image:height" content="630"/);
+assert.match(
+  html,
+  /name="twitter:image"\s+content="https:\/\/resume-sable-phi\.vercel\.app\/hire-full-stack-developer\/social-preview\.png"/,
+);
+assert.match(html, /content="Kunal Deshmukh, MERN \/ Full Stack Developer"/);
+assert.doesNotMatch(
+  html,
+  /(?:property="og:image"|name="twitter:image")\s+content="https:\/\/resume-sable-phi\.vercel\.app\/social-preview\.png"/,
+);
+assert.equal(socialPreview.readUInt32BE(16), 1200);
+assert.equal(socialPreview.readUInt32BE(20), 630);
+assert.match(socialPreviewSource, />\s*Kunal\s*</);
+assert.match(socialPreviewSource, />\s*Deshmukh\s*</);
+assert.match(socialPreviewSource, /MERN \/ Full Stack Developer/);
 assert.match(
   homepage,
   /href="\/hire-full-stack-developer\/">proof-first hiring brief<\/a>/,

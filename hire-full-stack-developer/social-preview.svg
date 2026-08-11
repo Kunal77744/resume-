@@ -1,0 +1,106 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="630"
+  viewBox="0 0 1200 630"
+  role="img"
+  aria-labelledby="title description"
+>
+  <title id="title">Kunal Deshmukh, MERN / Full Stack Developer</title>
+  <desc id="description">
+    A role-specific social preview for Kunal Deshmukh's full-stack hiring page.
+  </desc>
+  <defs>
+    <style>
+      @font-face {
+        font-family: "Fraunces";
+        src: url("../assets/fonts/fraunces-roman.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 300 700;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("../assets/fonts/inter.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 100 900;
+      }
+
+      @font-face {
+        font-family: "JetBrains Mono";
+        src: url("../assets/fonts/jetbrains-mono.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 100 800;
+      }
+
+      .display {
+        font-family: "Fraunces", Georgia, serif;
+      }
+
+      .sans {
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+    </style>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#151816" stroke-opacity="0.11" />
+      <circle cx="0" cy="0" r="1.8" fill="#151816" fill-opacity="0.22" />
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#090b0a" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="#f4f3ed" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+  <path d="M 0 568 H 1200" fill="none" stroke="#151816" stroke-opacity="0.16" />
+
+  <g transform="translate(72 72)">
+    <text class="mono" x="0" y="0" dominant-baseline="hanging" fill="#59605c" font-size="16" letter-spacing="3.2">
+      PORTFOLIO / HIRING PAGE
+    </text>
+    <text class="display" x="-2" y="78" dominant-baseline="hanging" fill="#111311" font-size="104" font-weight="450" letter-spacing="-5">
+      Kunal
+    </text>
+    <text class="display" x="-2" y="174" dominant-baseline="hanging" fill="#111311" font-size="104" font-weight="450" letter-spacing="-5">
+      Deshmukh
+    </text>
+
+    <g transform="translate(2 344)">
+      <rect width="16" height="16" fill="#d7ff50" stroke="#111311" stroke-width="2" />
+      <text class="sans" x="32" y="-4" dominant-baseline="hanging" fill="#111311" font-size="31" font-weight="650" letter-spacing="-1">
+        MERN / Full Stack Developer
+      </text>
+    </g>
+
+    <text class="mono" x="0" y="416" dominant-baseline="hanging" fill="#59605c" font-size="15" letter-spacing="1.8">
+      THREE PUBLIC PROJECTS · SOURCE-BACKED PROOF
+    </text>
+  </g>
+
+  <g transform="translate(786 55) rotate(4 168 248)" filter="url(#shadow)">
+    <rect width="336" height="496" rx="26" fill="#0b0d0c" />
+    <rect x="1" y="1" width="334" height="494" rx="25" fill="none" stroke="#ffffff" stroke-opacity="0.13" stroke-width="2" />
+    <circle cx="168" cy="176" r="106" fill="none" stroke="#d7ff50" stroke-width="34" />
+    <circle cx="168" cy="176" r="4" fill="#d7ff50" />
+    <path d="M 45 193 C 74 103, 268 72, 291 156 C 311 227, 102 280, 39 230" fill="none" stroke="#f4f3ed" stroke-opacity="0.74" stroke-width="2" />
+    <path d="M 86 86 C 213 64, 295 234, 199 282 C 112 325, 47 164, 86 86" fill="none" stroke="#f4f3ed" stroke-opacity="0.56" stroke-width="2" stroke-dasharray="3 7" />
+    <text class="display" x="168" y="122" text-anchor="middle" dominant-baseline="hanging" fill="#f4f3ed" font-size="92" font-style="italic" font-weight="450">
+      K
+    </text>
+    <text class="mono" x="168" y="343" text-anchor="middle" dominant-baseline="hanging" fill="#d7ff50" font-size="15" letter-spacing="3.3">
+      ROLE READY
+    </text>
+    <text class="sans" x="168" y="382" text-anchor="middle" dominant-baseline="hanging" fill="#f4f3ed" font-size="21" font-weight="600">
+      MERN · FULL STACK
+    </text>
+    <text class="mono" x="168" y="429" text-anchor="middle" dominant-baseline="hanging" fill="#a7ada9" font-size="12" letter-spacing="2.2">
+      DELHI, INDIA
+    </text>
+  </g>
+
+  <rect x="72" y="580" width="1056" height="4" fill="#111311" />
+</svg>
