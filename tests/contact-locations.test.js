@@ -58,10 +58,27 @@ assert.match(
 );
 
 for (const projectPage of projectPages) {
+  const html = read(projectPage);
+
   assert.match(
-    read(projectPage),
+    html,
     /data-contact-location="case-study"/,
     `${projectPage} should retain the case-study contact location`,
+  );
+  assert.match(
+    html,
+    /aria-label="Discuss a full-stack role with Kunal Deshmukh by email"/,
+    `${projectPage} should name the full-stack role in the accessible contact label`,
+  );
+  assert.match(
+    html,
+    /Discuss a full-stack role <span aria-hidden="true">↗<\/span>/,
+    `${projectPage} should name the full-stack role in the visible contact action`,
+  );
+  assert.match(
+    html,
+    /href="mailto:resume-sable-phi@mail\.tin\.computer\?subject=Kunal%20Deshmukh%20portfolio%20inquiry"/,
+    `${projectPage} should preserve the verified mailbox and existing subject`,
   );
 }
 
