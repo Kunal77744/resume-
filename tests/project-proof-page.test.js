@@ -10,8 +10,14 @@ const sitemap = read("sitemap.xml");
 
 assert.match(
   html,
-  /<title>Public project proof \| Kunal Deshmukh, MERN \/ Full Stack Developer<\/title>/,
+  /<title>Full Stack Developer Portfolio \| Kunal Deshmukh<\/title>/,
 );
+assert.match(html, /name="description"[\s\S]*full stack developer portfolio/);
+assert.match(html, /A full stack developer portfolio <span>you can inspect\.<\/span>/);
+assert.match(html, /id="review"/);
+assert.match(html, /id="questions"/);
+assert.match(html, /"@type": "FAQPage"/);
+assert.match(html, /"dateModified": "2026-08-13"/);
 assert.match(
   html,
   /rel="canonical"\s+href="https:\/\/resume-sable-phi\.vercel\.app\/project-proof\/"/,
@@ -33,9 +39,11 @@ assert.equal(
   2,
   "the homepage should link the hero proof action and projects section to the proof page",
 );
+assert.match(homepage, /Review full stack portfolio/);
+assert.match(homepage, /full stack developer portfolio page/);
 assert.match(
   sitemap,
-  /<loc>https:\/\/resume-sable-phi\.vercel\.app\/project-proof\/<\/loc>/,
+  /<loc>https:\/\/resume-sable-phi\.vercel\.app\/project-proof\/<\/loc>\s*<lastmod>2026-08-13<\/lastmod>/,
 );
 
 console.log("project proof page checks passed");
