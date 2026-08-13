@@ -1,24 +1,29 @@
-# Kunal Deshmukh portfolio
+# Kunal Deshmukh | MERN / Full Stack Developer
 
-A recruiter inspection guide for Kunal Deshmukh's MERN and full-stack work.
+I turn ideas into working products. This repository supports my public portfolio
+with three source-backed projects across MERN applications, backend pipelines,
+and practical AI tools.
 
-## Start here
+**[Review all three projects in one proof summary](https://resume-sable-phi.vercel.app/project-proof/)**
 
-1. [Open the live portfolio](https://resume-sable-phi.vercel.app/) for the
-   project overview, experience, credentials, and interactive Signal Desk study.
-2. [Download the one-page resume](https://resume-sable-phi.vercel.app/Kunal-Deshmukh-Full-Stack-Developer-Resume.pdf)
-   for a portable summary of the same verified work.
-3. Choose a project below for the product flow, architecture, constraints, and
-   commit-pinned source paths.
+The proof summary pairs each project with its case study, reviewed source, and
+current limits. It documents implemented behavior, not users, business outcomes,
+production scale, or client work.
 
-## Project inspection paths
+## Three public projects
 
 ### EcoTrace
 
-A TypeScript MERN carbon-emission tracker with authentication, calculation
-history, dashboards, and CRUD flows.
+A TypeScript MERN carbon-emission tracker that turns an activity note into an
+estimated emissions breakdown, then stores and returns that record for the
+authenticated account. Integration tests cover authentication, validation,
+calculation, history, and deletion with the external AI call replaced.
+
+Current limit: the result is an estimate, not an environmental audit. A
+deterministic keyword fallback keeps development flows testable without Gemini.
 
 - [Read the case study](https://resume-sable-phi.vercel.app/projects/ecotrace/)
+- [Read the technical walkthrough](https://resume-sable-phi.vercel.app/projects/ecotrace/technical-walkthrough/)
 - Inspect the reviewed revision through the
   [calculator view](https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/frontend/src/pages/Calculator.tsx),
   [footprint controller](https://github.com/mern2026book-cmd/CarbonEmission/blob/c6b7bd8ec37be2f346d9fba3e92ea3837febe23a/backend/src/controllers/footprint.controller.ts),
@@ -27,8 +32,13 @@ history, dashboards, and CRUD flows.
 
 ### Bookify
 
-A MERN bookstore prototype with catalog loading, search, a free-books filter,
-account endpoints, and a duplicate-free browser-persisted cart.
+A JavaScript MERN bookstore prototype that loads a catalog, filters titles and
+free books in the browser, exposes signup and login endpoints, and keeps a
+duplicate-free cart in browser storage.
+
+Current limit: the client points to a localhost API. The reviewed source has no
+server-validated session, connected checkout, public working demo, or app-level
+test suite.
 
 - [Read the case study](https://resume-sable-phi.vercel.app/projects/bookify/)
 - Inspect the reviewed revision through the
@@ -39,8 +49,13 @@ account endpoints, and a duplicate-free browser-persisted cart.
 
 ### AI Study Buddy
 
-A Streamlit study companion that uses Gemini for topic explanations, document
-summaries, quizzes, and study planning.
+A Python and Streamlit capstone with five study surfaces: topic explanations,
+document summaries, generated quizzes, focus planning, and architecture notes.
+One shared gateway handles Gemini access and fallback request paths.
+
+Current limit: model-backed features require a Gemini key, state lasts only for
+the active Streamlit session, image-only PDFs have no OCR path, and the reviewed
+source has no app-level tests.
 
 - [Read the case study](https://resume-sable-phi.vercel.app/projects/ai-study-buddy/)
 - Inspect the reviewed revision through the
@@ -48,6 +63,13 @@ summaries, quizzes, and study planning.
   [Gemini gateway](https://github.com/Kunal77744/AI-Study-Buddy/blob/06114d8669265f7270e1b15c854808b7ec482832/app.py#L185-L224),
   and [quiz flow](https://github.com/Kunal77744/AI-Study-Buddy/blob/06114d8669265f7270e1b15c854808b7ec482832/app.py#L433-L535).
 - [Browse the full reviewed source](https://github.com/Kunal77744/AI-Study-Buddy/tree/06114d8669265f7270e1b15c854808b7ec482832)
+
+## Portfolio and resume
+
+- [Open the live portfolio](https://resume-sable-phi.vercel.app/) for projects,
+  experience, credentials, and the Signal Desk interaction study.
+- [Download the one-page resume](https://resume-sable-phi.vercel.app/Kunal-Deshmukh-Full-Stack-Developer-Resume.pdf)
+  for a portable summary of the same verified work.
 
 ## Portfolio implementation
 
