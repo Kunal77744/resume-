@@ -41,6 +41,11 @@ assert.match(
   html,
   /property="og:image"\s+content="https:\/\/resume-sable-phi\.vercel\.app\/hire-full-stack-developer\/social-preview\.png"/,
 );
+assert.match(
+  html,
+  /property="og:description"\s+content="Inspect three public projects, three source-backed case studies, a one-page resume, and the limits of the work before starting a role conversation\."/,
+);
+assert.match(html, /"dateModified": "2026-08-11"/);
 assert.match(html, /property="og:image:width" content="1200"/);
 assert.match(html, /property="og:image:height" content="630"/);
 assert.match(
