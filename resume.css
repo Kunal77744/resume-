@@ -109,6 +109,17 @@ h1 {
   line-height: 1.45;
 }
 
+.proof-link {
+  display: block;
+  width: fit-content;
+  margin-top: 2mm;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 6.5pt;
+  line-height: 1.35;
+  text-decoration-color: var(--line);
+}
+
 address {
   display: grid;
   gap: 1.55mm;
