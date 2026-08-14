@@ -4,7 +4,7 @@ I turn ideas into working products. This repository supports my public portfolio
 with three source-backed projects across MERN applications, backend pipelines,
 and practical AI tools.
 
-**[Review all three projects in one proof summary](https://resume-sable-phi.vercel.app/project-proof/)**
+**[Review all three projects in one proof summary](https://resume-sable-phi.vercel.app/project-proof/?ref=portfolio-story)**
 
 The proof summary pairs each project with its case study, reviewed source, and
 current limits. It documents implemented behavior, not users, business outcomes,
