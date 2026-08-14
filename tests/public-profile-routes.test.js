@@ -34,6 +34,11 @@ assert.match(homepage, /href="mailto:resume-sable-phi@mail\.tin\.computer/);
 const resumePdf = fs.readFileSync(
   path.join(root, "Kunal-Deshmukh-Full-Stack-Developer-Resume.pdf"),
 );
+assert.match(
+  fs.readFileSync(path.join(root, "resume.html"), "utf8"),
+  /href="https:\/\/resume-sable-phi\.vercel\.app\/project-proof\/"/,
+  "the resume source should link to the public three-project proof hub",
+);
 assert.equal(
   resumePdf.includes(Buffer.from(brokenLinkedInUrl)),
   false,
