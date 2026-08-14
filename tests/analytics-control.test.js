@@ -53,6 +53,16 @@ assert.match(
   /posthog: analyticsEnabled \? window\.posthog : null/,
   "proof views should receive no analytics client when the opt-out is active",
 );
+assert.match(
+  sharedScript,
+  /captureProjectProofHubView\(\{[\s\S]*?posthog: analyticsEnabled \? window\.posthog : null/,
+  "proof-hub views should receive no analytics client when the opt-out is active",
+);
+assert.match(
+  sharedScript,
+  /captureProofDetailClick\(\{[\s\S]*?posthog: analyticsEnabled \? window\.posthog : null/,
+  "proof-detail clicks should receive no analytics client when the opt-out is active",
+);
 assert.equal(
   (sharedScript.match(/window\.posthog\.capture\(/g) || []).length,
   4,
@@ -60,8 +70,8 @@ assert.equal(
 );
 assert.equal(
   (sharedScript.match(/analyticsEnabled/g) || []).length,
-  6,
-  "the opt-out should guard proof, Signal Desk, copy, resume, and contact events",
+  8,
+  "the opt-out should guard proof, proof-hub, detail, Signal Desk, copy, resume, and contact events",
 );
 
 console.log("analytics control checks passed");

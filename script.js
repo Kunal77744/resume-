@@ -218,6 +218,13 @@ window.PortfolioProofAnalytics?.captureProofView({
   documentRoot: document.documentElement,
 });
 
+window.PortfolioProofAnalytics?.captureProjectProofHubView({
+  proofSurface: document.body?.dataset.proofSurface,
+  evaluatorSource,
+  posthog: analyticsEnabled ? window.posthog : null,
+  documentRoot: document.documentElement,
+});
+
 if (evaluatorSource) {
   document
     .querySelectorAll('a[href^="mailto:"][data-contact-location]')
@@ -407,6 +414,12 @@ if (
 }
 
 document.addEventListener("click", (event) => {
+  window.PortfolioProofAnalytics?.captureProofDetailClick({
+    target: event.target,
+    evaluatorSource,
+    posthog: analyticsEnabled ? window.posthog : null,
+  });
+
   const resumeLink =
     event.target instanceof Element
       ? event.target.closest("[data-resume-download]")
