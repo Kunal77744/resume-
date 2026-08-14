@@ -36,7 +36,7 @@ const resumePdf = fs.readFileSync(
 );
 assert.match(
   fs.readFileSync(path.join(root, "resume.html"), "utf8"),
-  /href="https:\/\/resume-sable-phi\.vercel\.app\/project-proof\/"/,
+  /href="https:\/\/resume-sable-phi\.vercel\.app\/project-proof\/\?ref=hiring-review"/,
   "the resume source should link to the public three-project proof hub",
 );
 assert.equal(
