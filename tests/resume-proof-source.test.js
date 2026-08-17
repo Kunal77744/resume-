@@ -12,8 +12,19 @@ const resumePdf = fs.readFileSync(
 const proofLink = resumeHtml.match(
   /class="proof-link"[\s\S]*?href="(https:\/\/[^\"]+)"/,
 );
+const resumeTitle = "Kunal Deshmukh | MERN / Full Stack Developer.";
 
 assert.ok(proofLink, "the resume should keep its visible project-proof link");
+assert.match(
+  resumeHtml,
+  new RegExp(`<title>${resumeTitle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}<\\/title>`),
+  "the resume source should use the role-specific document title",
+);
+assert.equal(
+  resumePdf.includes(Buffer.from(`/Title (${resumeTitle})`)),
+  true,
+  "the downloadable resume should preserve the role-specific document title",
+);
 
 const proofUrl = new URL(proofLink[1]);
 
