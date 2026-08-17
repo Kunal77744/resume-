@@ -43,7 +43,11 @@ assert.match(
 );
 assert.match(
   html,
-  /property="og:description"\s+content="Inspect three public projects, three source-backed case studies, a one-page resume, and the limits of the work before starting a role conversation\."/,
+  /property="og:description"\s+content="Review EcoTrace, Bookify, and AI Study Buddy with source-backed case studies, then contact Kunal Deshmukh to discuss a full-stack role\."/,
+);
+assert.match(
+  html,
+  /name="twitter:description"\s+content="Review EcoTrace, Bookify, and AI Study Buddy with source-backed case studies, then contact Kunal Deshmukh to discuss a full-stack role\."/,
 );
 assert.match(html, /"dateModified": "2026-08-11"/);
 assert.match(html, /property="og:image:width" content="1200"/);
